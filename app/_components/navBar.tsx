@@ -19,67 +19,25 @@ export const rubik = Rubik_Mono_One({
   weight: "400",
 });
 
-function AnimatedLogo() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [rippleIndices, setRippleIndices] = useState<number[]>([]);
-  const letters = "Unedited".split("");
-  const specialChars = ["!", "@", "#", "$", "%", "^", "&", "*"];
-  const { setIsHovering } = useCursor();
+interface AnimatedLogoProps {
+  size?: "sm" | "md" | "lg" | "xl";
+  autoAnimate?: boolean;
+  animateDuration?: number;
+}
 
-  const startRipple = useCallback(
-    (index: number) => {
-      let rippleTimeout: NodeJS.Timeout;
-      const startRippleEffect = (currentIndex: number) => {
-        const distance = Math.abs(currentIndex - index);
-        const delay = distance * 60; 
-
-        rippleTimeout = setTimeout(() => {
-          setRippleIndices((prev) => [...prev, currentIndex]);
-          setTimeout(() => {
-            setRippleIndices((prev) => prev.filter((i) => i !== currentIndex));
-          }, 160); 
-        }, delay);
-      };
-
-      setRippleIndices([]);
-      for (let i = 0; i < letters.length; i++) {
-        startRippleEffect(i);
-      }
-
-      return () => clearTimeout(rippleTimeout);
-    },
-    [letters.length]
-  );
-
-  const getDisplayChar = (index: number) => {
-    if (rippleIndices.includes(index)) {
-      return specialChars[Math.floor(Math.random() * specialChars.length)];
-    }
-    return letters[index];
+export function AnimatedLogo({
+  size = "md",
+}: AnimatedLogoProps) {
+  // Simplified single-word logotype to reduce visual noise.
+  const sizeClasses = {
+    sm: "text-lg",
+    md: "text-2xl",
+    lg: "text-4xl",
+    xl: "text-6xl",
   };
 
   return (
-    <div className="flex">
-      {letters.map((letter, index) => (
-        <Link
-          key={index}
-          className={`${rubik.className} text-xl transition-all duration-150`}
-          onMouseEnter={() => {
-            setHoveredIndex(index);
-            startRipple(index);
-            setIsHovering(true);
-          }}
-          onMouseLeave={() => {
-            setHoveredIndex(null);
-            setIsHovering(false);
-          }}
-          onClick={() => setIsHovering(false)}
-          href="/"
-        >
-          {getDisplayChar(index)}
-        </Link>
-      ))}
-    </div>
+    <div className={`${rubik.className} ${sizeClasses[size]} tracking-tight font-semibold`}>UNEDITED</div>
   );
 }
 
@@ -91,6 +49,7 @@ export default function NavBar() {
     { href: "/about", label: "About" },
     { href: "/projects", label: "Projects" },
     { href: "https://blog.unedited.site/", label: "Blog" },
+    { href: "mailto:charlie@unedited.site", label: "Contact" },
   ];
 
   useEffect(() => {
@@ -105,24 +64,31 @@ export default function NavBar() {
   }, [isOpen]);
 
   return (
-    <nav className="fixed mb-4 top-4 left-1/2 transform -translate-x-1/2 mr-8 gap-8 max-w-2xl flex items-center justify-between px-6 py-2 z-50 bg-gradient-to-b from-purple-100/40 to-transparent backdrop-blur-[4px] border-[1.5px] border-foreground rounded-2xl shadow-sm">
-      <AnimatedLogo />
-      <div className="hidden md:flex space-x-6">
-        {menuItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="relative px-3 py-2 transition-colors duration-200 font-medium"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-            onClick={() => setIsOpen(false)}
-          >
-            <span className="text-sm tracking-wide">{item.label}</span>
-            <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full opacity-0 transition-opacity duration-200 hover:opacity-100"></span>
-          </Link>
-        ))}
-      </div>
-      <div className="md:hidden">
+    <nav className="fixed top-0 left-0 right-0 z-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 py-3 bg-background/60 backdrop-blur-md border-b border-border">
+          <div className="flex items-center gap-4">
+            <Link href="/" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+              <AnimatedLogo size="md" />
+            </Link>
+          </div>
+
+          <div className="hidden md:flex items-center space-x-6">
+            {menuItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative px-3 py-2 transition-colors duration-200 font-medium text-sm"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="md:hidden">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button
@@ -165,6 +131,8 @@ export default function NavBar() {
             </div>
           </SheetContent>
         </Sheet>
+          </div>
+        </div>
       </div>
     </nav>
   );

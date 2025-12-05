@@ -41,8 +41,26 @@ export function ServiceCard({
         </div>
         <h3 className="text-base font-medium text-gray-900">{title}</h3>
         <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+        <p className="text-sm text-muted-foreground mt-1">{getEvidence(title)}</p>
       </div>
     </motion.div>
   );
+}
+
+function getEvidence(title: string) {
+  switch (title) {
+    case "Web Development":
+      return "Next.js 14 App Router, ISR, image optimization; Lighthouse 95+.";
+    case "iOS Development":
+      return "Swift 5+, SwiftUI, App Store releases and TestFlight distribution.";
+    case "Backend Solutions":
+      return "Golang microservices, REST/GraphQL APIs, containerized with Docker.";
+    case "UI/UX Design":
+      return "Figma-driven workflows, high-fidelity prototypes and accessibility reviews.";
+    case "CMS Development":
+      return "Sanity and static generation integrations for fast content editing.";
+    default:
+      return "Proven experience shipping production apps and websites.";
+  }
 }
 

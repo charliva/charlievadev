@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -31,7 +31,7 @@
     "lucide-react": "^0.439.0",
     "mdx-bundler": "^10.0.3",
     "motion": "^11.14.1",
-    "next": "^15.1.2",
+    "next": "^15.4.4",
     "next-mdx-remote": "^5.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

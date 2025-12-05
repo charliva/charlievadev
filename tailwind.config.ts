@@ -66,7 +66,7 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            maxWidth: '65ch',
+            maxWidth: '70ch',
             color: 'var(--tw-prose-body)',
             '[class~="lead"]': {
               color: 'var(--tw-prose-lead)',

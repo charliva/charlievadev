@@ -19,12 +19,14 @@ const projects = [
     description: "A minimal portfolio built with Next.js and TailwindCSS",
     imagePath: "/Unedited.png",
     projectUrl: "/projects/posts/Unedited",
+    tech: ["Next.js", "TailwindCSS"],
   },
   {
     title: "Bitless Dashboard",
     description: "Admin dashboard for managing products and users",
     imagePath: "/Bitless.png",
     projectUrl: "/projects/posts/Bitless",
+    tech: ["Golang", "React", "Postgres"],
   },
 ];
 
@@ -60,12 +62,12 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <HeroSection />
-      <div className="max-w-7xl mx-auto px-6 py-16 sm:py-24 space-y-32">
+  <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-8">
         <section>
           <h2 className="text-2xl font-semibold tracking-tight mb-12 text-center">
             What I Do
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} />
             ))}

@@ -136,12 +136,10 @@ h1 {
   }
 }
 
-/* Add this to app/globals.css */
 * {
   cursor: none !important;
 }
 
-/* Optional: Show default cursor when JavaScript is disabled */
 .no-js * {
   cursor: auto !important;
 }
