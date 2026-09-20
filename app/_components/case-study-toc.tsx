@@ -38,14 +38,23 @@ export function CaseStudyToc({ sections, className }: CaseStudyTocProps) {
 
     if (elements.length === 0) return;
 
+    // The observer only reports sections whose visibility *changed*, so the set
+    // has to persist across callbacks: reading one batch in isolation promotes
+    // a section that entered below one already sitting in the band.
+    const inBand = new Set<string>();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const topmost = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
-          )[0];
-        if (topmost) setActiveId(topmost.target.id);
+        for (const entry of entries) {
+          if (entry.isIntersecting) inBand.add(entry.target.id);
+          else inBand.delete(entry.target.id);
+        }
+
+        // Document order, not callback order. When the band falls in the gap
+        // between two sections it is empty — the last answer stays, rather than
+        // the rail blanking out mid-scroll.
+        const current = elements.find((element) => inBand.has(element.id));
+        if (current) setActiveId(current.id);
       },
       { rootMargin: "-20% 0px -70% 0px" },
     );
@@ -83,13 +92,19 @@ export function CaseStudyToc({ sections, className }: CaseStudyTocProps) {
                     style={{
                       width: isActive ? "14px" : "6px",
                       transitionProperty: "width, background-color",
-                      transitionDuration: reduceMotion ? "0ms" : "220ms",
+                      transitionDuration: reduceMotion ? "0ms" : "var(--d-2)",
                       transitionTimingFunction: "var(--ease-standard)",
                     }}
                   />
                 </span>
-                <span className="type-mono-label text-current">{section.index}</span>
-                <span className="type-mono-label text-current">{section.title}</span>
+                <span className="type-mono-label shrink-0 text-current">
+                  {section.index}
+                </span>
+                {/* The rail is 112px: a title longer than the column wraps rather
+                    than spilling into the gutter. */}
+                <span className="type-mono-label min-w-0 break-words text-current">
+                  {section.title}
+                </span>
               </a>
             </li>
           );

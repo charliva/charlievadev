@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { CaseStudyModule } from "./_components/case-study-module";
 import { ContactSection } from "./_components/contact-section";
 import { Hero } from "./_components/hero";
@@ -6,6 +8,10 @@ import { PageGrid, RailSection } from "./_components/page-grid";
 import { SpecTable } from "./_components/spec-row";
 import { about, now, stack } from "./_content/site";
 import { EXPERIMENTS, WORK } from "./_content/projects";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

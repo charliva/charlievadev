@@ -36,8 +36,8 @@ export const WORK: ProjectRow[] = [
     description:
       "An admin dashboard for managing product and user data — the first project I had to write entirely myself. It taught me data modelling, writing TypeScript someone else has to read, and keeping a codebase legible past the fun part.",
     // TODO(charlie): the old site described Bitless as Golang/React/Postgres in
-    // one place and Next.js/React/Supabase in another. Confirm which is right.
-    stack: ["next.js", "react", "tailwind", "supabase"],
+    // one place and Next.js/React/Supabase in another. Add the stack back here
+    // once you confirm which is right — shipping a guess is worse than no line.
   },
 ];
 
@@ -58,7 +58,11 @@ export const EXPERIMENTS: ProjectRow[] = [
   {
     title: "This site",
     tag: "Ongoing",
-    description: "Built in the open. Next.js, Tailwind, no database.",
+    // TODO(charlie): if you make the repo public, add
+    // `href: "https://github.com/charliva/charlievadev", external: true`
+    // and the row links itself.
+    description:
+      "No database, no CMS, no analytics. All the copy lives in four typed files, so changing it is a one-line edit.",
     stack: ["next.js", "tailwind", "vercel"],
   },
 ];

@@ -49,12 +49,21 @@ export function SiteHeader() {
     );
     if (!sections.length) return;
 
+    // The observer only reports sections whose visibility *changed*, so the set
+    // has to persist across callbacks — one batch in isolation promotes a
+    // section that entered below one already sitting in the band.
+    const inBand = new Set<string>();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (visible) setActive(visible.target.id);
+        for (const entry of entries) {
+          if (entry.isIntersecting) inBand.add(entry.target.id);
+          else inBand.delete(entry.target.id);
+        }
+        // Document order, not callback order. An empty band keeps the last
+        // answer rather than blanking the nav mid-scroll.
+        const current = sections.find((section) => inBand.has(section.id));
+        if (current) setActive(current.id);
       },
       { rootMargin: "-20% 0px -70% 0px" },
     );

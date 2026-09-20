@@ -114,8 +114,27 @@ const COLUMN: Variants = {
   shown: {
     opacity: 1,
     scaleY: 1,
-    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] },
   },
+};
+
+/**
+ * Reduced motion keeps the same hidden state and drops the duration, rather
+ * than dropping the variants: useReducedMotion() is null on the server, so the
+ * server always renders the animated branch. A client that rendered a *different*
+ * tree would hydrate onto the server's opacity="0" attribute — React reports the
+ * mismatch but never removes an extra server attribute, and motion only writes
+ * the values it was given — leaving the drawing permanently invisible for
+ * exactly the people who asked for less motion.
+ */
+const CONTAINER_INSTANT: Variants = {
+  hidden: {},
+  shown: { transition: { staggerChildren: 0 } },
+};
+
+const COLUMN_INSTANT: Variants = {
+  hidden: { opacity: 0, scaleY: 0.96 },
+  shown: { opacity: 1, scaleY: 1, transition: { duration: 0 } },
 };
 
 /**
@@ -147,13 +166,12 @@ function MarkShape({ mark, x }: { mark: Mark; x: number }) {
   const y = railY(mark.from);
   const height = railY(mark.to) - y;
 
-  if (mark.kind === "school") {
-    return (
-      <rect x={x} y={y} width={COL_W} height={height} rx={4} className="fill-raised" />
-    );
-  }
-
-  // Inset by half the stroke so the 1px outline sits inside the block.
+  /*
+   * Both blocks are outlined. A raised fill on bg is ~1.06:1 in either theme,
+   * so an unstroked school block is invisible against the module — and the
+   * blocks are the drawing. Inset by half the stroke so the 1px outline sits
+   * inside the block rather than straddling its edge.
+   */
   return (
     <rect
       x={x + 0.5}
@@ -163,7 +181,11 @@ function MarkShape({ mark, x }: { mark: Mark; x: number }) {
       rx={4}
       strokeWidth={1}
       vectorEffect="non-scaling-stroke"
-      className="fill-[var(--signal-dim)] stroke-signal"
+      className={
+        mark.kind === "school"
+          ? "fill-raised stroke-rule-strong"
+          : "fill-[var(--signal-dim)] stroke-signal"
+      }
     />
   );
 }
@@ -179,8 +201,14 @@ function DayColumn({
 }) {
   const x = colX(index);
 
-  const content = (
-    <>
+  return (
+    <motion.g
+      /* Paired with the <noscript> guard in the layout: no JS, no opacity 0. */
+      data-reveal=""
+      variants={animated ? COLUMN : COLUMN_INSTANT}
+      style={COLUMN_ORIGIN}
+    >
+      {/* dx compensates for the trailing letter-space on a centred glyph. */}
       <text
         x={x + COL_W / 2}
         y={13}
@@ -193,17 +221,6 @@ function DayColumn({
       {day.marks.map((mark, markIndex) => (
         <MarkShape key={`${mark.kind}-${markIndex}`} mark={mark} x={x} />
       ))}
-    </>
-  );
-
-  return (
-    <motion.g
-      /* Paired with the <noscript> guard in the layout: no JS, no opacity 0. */
-      data-reveal=""
-      variants={animated ? COLUMN : undefined}
-      style={animated ? COLUMN_ORIGIN : undefined}
-    >
-      {content}
     </motion.g>
   );
 }
@@ -211,7 +228,10 @@ function DayColumn({
 /* ---------------------------------------------------------------- legend -- */
 
 const LEGEND = [
-  { label: "school", swatch: "h-2 w-2 rounded-[2px] bg-raised" },
+  {
+    label: "school",
+    swatch: "h-2 w-2 rounded-[2px] border border-rule-strong bg-raised",
+  },
   { label: "travel", swatch: "h-[2px] w-2 bg-rule-strong" },
   {
     label: "study",
@@ -238,10 +258,12 @@ export function WeekSchematic({ className }: { className?: string }) {
         aria-hidden="true"
         focusable="false"
         className="block h-auto w-full"
-        initial={animated ? "hidden" : false}
+        initial="hidden"
+        /* Reduced motion arrives on mount, so it can never wait on a scroll. */
+        animate={animated ? undefined : "shown"}
         whileInView={animated ? "shown" : undefined}
-        viewport={{ once: true, amount: 0.3 }}
-        variants={animated ? CONTAINER : undefined}
+        viewport={animated ? { once: true, amount: 0.3 } : undefined}
+        variants={animated ? CONTAINER : CONTAINER_INSTANT}
       >
         <g>
           {RAIL_TICKS.map((tick) => (
@@ -281,7 +303,8 @@ export function WeekSchematic({ className }: { className?: string }) {
         ))}
       </motion.svg>
 
-      <ul className="mt-4 flex flex-wrap items-center gap-y-2">
+      {/* gap-x matches the 16px the separator holds open, so the row is even. */}
+      <ul aria-label="Key" className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
         {LEGEND.map((item, index) => (
           <li key={item.label} className="type-mono-index flex items-center gap-[6px]">
             {index > 0 ? (
@@ -296,7 +319,8 @@ export function WeekSchematic({ className }: { className?: string }) {
         ))}
       </ul>
 
-      <figcaption className="type-mono-data mt-3">
+      {/* Sans, not mono: the caption is a sentence, and mono is for labels. */}
+      <figcaption className="type-small mt-3 text-text-3">
         Fig. 1 — Schematic: generated day structure (school, travel, study blocks).
         Not a screenshot.
       </figcaption>

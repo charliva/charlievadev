@@ -52,7 +52,7 @@ export function CopyEmail({ email }: { email: string }) {
     // in a row would be silent. The alternating zero-width space forces it.
     announceCount.current += 1;
     setAnnouncement(
-      announceCount.current % 2 === 0 ? text : `${text}​`,
+      announceCount.current % 2 === 0 ? text : `${text}\u200B`,
     );
   }, []);
 
@@ -99,7 +99,7 @@ export function CopyEmail({ email }: { email: string }) {
       <a
         ref={addressRef}
         href={`mailto:${email}`}
-        className="prose-link rounded-chip font-mono text-[13px]"
+        className="prose-link min-w-0 break-words rounded-chip font-mono text-[13px]"
       >
         {email}
       </a>
@@ -107,6 +107,8 @@ export function CopyEmail({ email }: { email: string }) {
       {/*
         The status label is absolutely positioned: reserving inline space for a
         word that is visible for 1.2s would be dead width the rest of the time.
+        Below sm it sits under the button instead of beside it — "Press Ctrl+C"
+        past the right edge of a 320px screen would scroll the whole page.
       */}
       <span className="relative inline-flex items-center">
         <button
@@ -135,12 +137,12 @@ export function CopyEmail({ email }: { email: string }) {
           </span>
         </button>
 
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="wait">
           {status === "idle" ? null : (
             <motion.span
               key={status}
               aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-full ml-[10px] flex items-center whitespace-nowrap"
+              className="pointer-events-none absolute right-0 top-full flex items-center whitespace-nowrap sm:inset-y-0 sm:left-full sm:right-auto sm:ml-[10px]"
               initial={{ opacity: 0, y: travel }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -travel, transition: exit }}

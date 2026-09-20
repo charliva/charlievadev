@@ -31,7 +31,7 @@ export default function OpengraphImage() {
               color: "#8C929C",
             }}
           >
-            {site.role} · {site.location}
+            {`${site.role} · ${site.location}`}
           </div>
         </div>
 

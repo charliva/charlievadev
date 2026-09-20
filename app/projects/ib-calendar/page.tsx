@@ -53,7 +53,7 @@ function Flow({ steps }: { steps: readonly string[] }) {
 export default function CaseStudyPage() {
   return (
     <PageGrid>
-      <div className="hidden self-start lg:sticky lg:top-[76px] lg:block">
+      <div className="hidden lg:block">
         <CaseStudyToc
           sections={caseStudy.sections.map((section) => ({
             id: section.id,

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type DiagramNode = {
   id: string;
   label: string;
-  /** One factual line. Shown in the fixed-height slot under the diagram. */
+  /** One factual line. Shown in the reserved slot under the diagram. */
   caption: string;
 };
 
@@ -93,11 +93,20 @@ const RESTING_CAPTION = "Choose a node to read what that part of the system does
 const COLUMN_PLACEMENT = ["sm:col-start-1", "sm:col-start-3", "sm:col-start-5"] as const;
 const CONNECTOR_PLACEMENT = ["sm:col-start-2", "sm:col-start-4"] as const;
 
-const SR_DESCRIPTION = `Architecture diagram: three groups of technologies, each feeding the next. ${COLUMNS.map(
-  (column) => `${column.title}: ${column.nodes.map((node) => node.label).join("; ")}.`,
-).join(" ")}`;
+/*
+ * Derived, so it cannot drift from COLUMNS. It names the groups and the
+ * direction only — the labels themselves are announced by the buttons, so
+ * repeating them here would read every node twice.
+ */
+const SR_DESCRIPTION = `Architecture diagram: ${COLUMNS.length} groups of technologies, each feeding the next — ${COLUMNS.map(
+  (column) => column.title,
+).join(", ")}. Each node below is a button: focus or press one to read what that part of the system does.`;
 
-/** 1px rule with a CSS-triangle head: down when stacked, right when in columns. */
+/**
+ * 1px rule with a CSS-triangle head: down when stacked, right when in columns.
+ * rule-strong rather than rule — the arrows carry the flow direction, so they
+ * are structure like the page spine, not decoration.
+ */
 function Connector({ className }: { className?: string }) {
   return (
     <div
@@ -105,12 +114,12 @@ function Connector({ className }: { className?: string }) {
       className={cn("flex items-center justify-center", className)}
     >
       <div className="flex flex-col items-center sm:hidden">
-        <span className="h-4 w-px bg-rule" />
-        <span className="h-0 w-0 border-x-[4px] border-t-[5px] border-x-transparent border-t-rule" />
+        <span className="h-4 w-px bg-rule-strong" />
+        <span className="h-0 w-0 border-x-[4px] border-t-[5px] border-x-transparent border-t-rule-strong" />
       </div>
       <div className="hidden w-full items-center px-[6px] sm:flex">
-        <span className="h-px flex-1 bg-rule" />
-        <span className="h-0 w-0 border-y-[4px] border-l-[5px] border-y-transparent border-l-rule" />
+        <span className="h-px flex-1 bg-rule-strong" />
+        <span className="h-0 w-0 border-y-[4px] border-l-[5px] border-y-transparent border-l-rule-strong" />
       </div>
     </div>
   );
@@ -138,19 +147,25 @@ function nextPosition(key: string, col: number, row: number): Position | null {
 }
 
 /**
- * Hover and focus are the same interaction here, so they are tracked
- * separately and merged: a pointer passing over a node must not strand the
- * caption when the mouse leaves a node that still holds focus.
+ * Pointer, focus and activation all reveal the same caption, so each is tracked
+ * separately and merged: hovering previews, focusing previews, and clicking (or
+ * Enter/Space) pins — which is what leaves a caption on screen for a touch user
+ * who has no hover and does not keep focus.
+ *
+ * The caption is a single polite live region and is deliberately NOT wired up
+ * as aria-describedby: a description that changes as a result of focusing is
+ * read either twice or stale, depending on the screen reader.
  */
 export function ArchitectureDiagram({ className }: { className?: string }) {
   const reduceMotion = useReducedMotion();
   const uid = useId();
-  const captionId = `${uid}-caption`;
   const nodeRefs = useRef(new Map<string, HTMLButtonElement>());
 
   const [hovered, setHovered] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
-  const activeId = hovered ?? focused;
+  const [pinned, setPinned] = useState<string | null>(null);
+
+  const activeId = hovered ?? focused ?? pinned;
   const activeNode = COLUMNS.flatMap((column) => column.nodes).find(
     (node) => node.id === activeId,
   );
@@ -161,13 +176,17 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
     row: number,
   ) {
     if (event.key === "Escape") {
+      setPinned(null);
       setHovered(null);
-      setFocused(null);
       return;
     }
+
     const next = nextPosition(event.key, col, row);
-    if (!next) return;
-    event.preventDefault(); // arrows move focus here, they do not scroll the page
+    // A clamped arrow is not a move: swallowing it would strand the page at the
+    // edge of the diagram with no way to scroll on.
+    if (!next || (next.col === col && next.row === row)) return;
+
+    event.preventDefault();
     nodeRefs.current.get(COLUMNS[next.col].nodes[next.row].id)?.focus();
   }
 
@@ -175,13 +194,13 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
     <figure className={cn("mx-auto w-full max-w-page", className)}>
       <p className="sr-only">{SR_DESCRIPTION}</p>
 
-      <div className="grid grid-cols-1 gap-y-3 sm:grid-cols-[1fr_44px_1fr_44px_1fr] sm:gap-y-3">
+      <div className="grid grid-cols-1 gap-y-3 sm:grid-cols-[1fr_44px_1fr_44px_1fr]">
         {COLUMNS.map((column, col) => (
           <Fragment key={column.id}>
             <div
               id={`${uid}-${column.id}`}
               className={cn(
-                "type-mono-label flex h-7 items-center border-b border-rule",
+                "type-mono-label flex h-7 min-w-0 items-center border-b border-rule",
                 COLUMN_PLACEMENT[col],
                 "sm:row-start-1",
               )}
@@ -193,14 +212,13 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
               role="group"
               aria-labelledby={`${uid}-${column.id}`}
               className={cn(
-                "flex flex-col gap-2",
+                "flex min-w-0 flex-col gap-2",
                 COLUMN_PLACEMENT[col],
                 "sm:row-start-2",
               )}
             >
               {column.nodes.map((node, row) => {
                 const isActive = node.id === activeId;
-                const isDimmed = activeId !== null && !isActive;
 
                 return (
                   <button
@@ -210,22 +228,26 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
                       if (element) nodeRefs.current.set(node.id, element);
                       else nodeRefs.current.delete(node.id);
                     }}
-                    aria-describedby={captionId}
+                    aria-pressed={pinned === node.id}
                     onMouseEnter={() => setHovered(node.id)}
                     onMouseLeave={() => setHovered(null)}
                     onFocus={() => setFocused(node.id)}
                     onBlur={() => setFocused(null)}
-                    onClick={() => setFocused((current) => (current === node.id ? null : node.id))}
+                    onClick={() =>
+                      setPinned((current) => (current === node.id ? null : node.id))
+                    }
                     onKeyDown={(event) => handleKeyDown(event, col, row)}
                     className={cn(
-                      "type-mono-data w-full rounded-module border p-3 text-left",
+                      "type-mono-data w-full cursor-pointer rounded-module border p-3 text-left",
                       reduceMotion
                         ? null
-                        : "transition-[color,border-color,opacity] duration-[120ms] ease-standard",
+                        : "transition-[color,background-color,border-color] duration-[120ms] ease-standard",
+                      // No dimming of the siblings: 45% opacity on text-2 lands
+                      // near 2:1, and every label has to stay readable.
                       isActive
                         ? "border-signal text-text"
                         : "border-line-int text-text-2",
-                      isDimmed ? "opacity-[0.45]" : "opacity-100",
+                      pinned === node.id ? "bg-[var(--tint-hover)]" : null,
                     )}
                   >
                     {node.label}
@@ -243,13 +265,17 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
         ))}
       </div>
 
-      {/* Fixed height in both layouts: the caption swaps, the page never reflows. */}
+      {/*
+        Reserved height rather than fixed height: every caption fits, so the
+        page does not reflow, and a caption that wraps further on a narrow
+        viewport grows instead of being clipped away.
+      */}
       <div className="mt-4 border-t border-rule pt-3">
         <p
-          id={captionId}
           aria-live="polite"
+          aria-atomic="true"
           className={cn(
-            "type-small h-16 overflow-hidden sm:h-11",
+            "type-small measure min-h-[64px] sm:min-h-[44px]",
             activeNode ? "text-text-2" : "text-text-3",
           )}
         >

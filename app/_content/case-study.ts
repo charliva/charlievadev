@@ -96,7 +96,9 @@ export const caseStudy = {
     },
     {
       title: "Capture",
-      // TODO(charlie): confirm the review-before-save behaviour matches the app.
+      // TODO(charlie): this is the one behavioural promise on the site — confirm
+      // the app really does hold an import until you accept it, or cut the
+      // sentence. The Review/Confirm steps in `flows` below say the same thing.
       body: "A screenshot of a timetable or an assessment slide is read by a model and turned into structured events and deadlines. A new event can be written as a sentence instead of filled into a form. Nothing is saved before I confirm it. Both exist for the same reason: putting something in should cost almost nothing.",
     },
     {
@@ -130,7 +132,7 @@ export const caseStudy = {
   flows: [
     {
       steps: ["Screenshot", "Extract", "Review", "Commit"],
-      body: "A photo of a timetable or a slide of assessment dates becomes structured rows. I check the extraction before any of it lands in the calendar.",
+      body: "A photo of a timetable or a slide of assessment dates becomes structured rows, mapped to the right class and date.",
     },
     {
       steps: ["Text", "Parse", "Confirm", "Event"],
