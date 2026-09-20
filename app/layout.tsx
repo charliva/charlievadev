@@ -1,40 +1,77 @@
-import type { Metadata } from "next";
-import { Work_Sans } from "next/font/google";
-import "./globals.css";
-import NavBar from "./_components/navBar";
-import { CursorProvider } from "./_components/cursorContext";
-import CustomCursor from "./_components/customCursor";
-import Footer from "./_components/footer";
-import Background from "./_components/background";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 
-const workSans = Work_Sans({
+import { SiteFooter } from "./_components/site-footer";
+import { SiteHeader } from "./_components/site-header";
+import { SkipLink } from "./_components/skip-link";
+import { ThemeProvider } from "./_components/theme-provider";
+import { meta, siteUrl } from "./_content/site";
+import "./globals.css";
+
+const sans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-work",
+  display: "swap",
+  variable: "--font-sans",
+  fallback: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-mono",
+  preload: false,
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
 
 export const metadata: Metadata = {
-  title: "Unedited",
-  description: "Unedited official website",
-  keywords: ["Unedited", "Web developer", "App developer"],
-  icons: {
-    icon: "favicon.ico",
+  metadataBase: new URL(siteUrl),
+  title: { default: meta.title, template: meta.titleTemplate },
+  description: meta.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: meta.title,
+    description: meta.description,
+    url: siteUrl,
+    siteName: "charlieva.dev",
+    locale: "en_GB",
+    type: "website",
   },
+  twitter: { card: "summary_large_image", title: meta.title, description: meta.description },
+  icons: { icon: "/favicon.ico" },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0D0F12" },
+    { media: "(prefers-color-scheme: light)", color: "#FAFAFB" },
+  ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${workSans.className}`}>
-        <CursorProvider>
-          <CustomCursor />
-          <NavBar />
-          <main>{children}</main>
-          <Footer />
-        </CursorProvider>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${sans.variable} ${mono.variable} scroll-smooth`}
+    >
+      <body>
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SkipLink />
+          <SiteHeader />
+          <main id="content">{children}</main>
+          <SiteFooter />
+        </ThemeProvider>
       </body>
     </html>
   );
