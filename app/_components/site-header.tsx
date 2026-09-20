@@ -86,7 +86,12 @@ export function SiteHeader() {
                 {site.name}
               </Link>
             )}
-            <span aria-hidden="true" className="mx-[10px] h-[10px] w-px bg-rule-strong" />
+            {/* The divider only exists to separate two things — it hides with
+                the location it separates. */}
+            <span
+              aria-hidden="true"
+              className="mx-[10px] hidden h-[10px] w-px bg-rule-strong min-[400px]:block"
+            />
             <span className="type-mono-data hidden min-[400px]:inline">
               {site.locationShort}
             </span>
