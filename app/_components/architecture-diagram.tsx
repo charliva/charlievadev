@@ -198,7 +198,7 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
     >
       <p className="sr-only">{SR_DESCRIPTION}</p>
 
-      <div className="grid grid-cols-1 gap-y-3 sm:grid-cols-[1fr_44px_1fr_44px_1fr]">
+      <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-[1fr_44px_1fr_44px_1fr] sm:gap-y-3">
         {COLUMNS.map((column, col) => (
           <Fragment key={column.id}>
             <div
@@ -216,7 +216,7 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
               role="group"
               aria-labelledby={`${uid}-${column.id}`}
               className={cn(
-                "flex min-w-0 flex-col gap-2",
+                "flex min-w-0 flex-col border-t border-rule",
                 COLUMN_PLACEMENT[col],
                 "sm:row-start-2",
               )}
@@ -242,16 +242,20 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
                     }
                     onKeyDown={(event) => handleKeyDown(event, col, row)}
                     className={cn(
-                      "type-mono-data w-full cursor-pointer rounded-module border p-3 text-left",
+                      // A row, not a box: the site draws structure with
+                      // hairlines, and nineteen bordered boxes on one page is
+                      // the opposite of one bordered module.
+                      "type-mono-data relative w-full cursor-pointer border-b border-rule py-[13px] pl-3 pr-2 text-left",
                       reduceMotion
                         ? null
-                        : "transition-[color,background-color,border-color] duration-[120ms] ease-standard",
+                        : "transition-[color,background-color] duration-[120ms] ease-standard",
                       // No dimming of the siblings: 45% opacity on text-2 lands
                       // near 2:1, and every label has to stay readable.
-                      isActive
-                        ? "border-signal text-text"
-                        : "border-line-int text-text-2",
-                      pinned === node.id ? "bg-[var(--tint-hover)]" : null,
+                      isActive ? "bg-[var(--tint-hover)] text-text" : "text-text-2",
+                      // The active marker is a 2px rule in the accent, which is
+                      // on the allowlist; a border all the way round is not.
+                      "before:absolute before:bottom-0 before:left-0 before:top-0 before:w-[2px]",
+                      isActive ? "before:bg-signal" : "before:bg-transparent",
                     )}
                   >
                     {node.label}

@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/projects/ib-calendar" },
 };
 
+/** The article is one grid item, so its rules span the column, not the page. */
+function SectionRule() {
+  return <hr className="my-7 border-0 border-t border-rule sm:my-10" />;
+}
+
 function SectionHead({
   index,
   title,
@@ -116,7 +121,9 @@ export default function CaseStudyPage() {
           </figure>
         </Reveal>
 
-        <Reveal as="section" id="idea" className="mt-20 scroll-mt-20">
+        <SectionRule />
+
+        <Reveal as="section" id="idea" className="scroll-mt-20">
           <SectionHead index="02" title="Idea" id="idea" />
           <p className="type-body measure mt-5">{caseStudy.idea[0]}</p>
           <SpecTable items={caseStudy.ideaKeys} className="mt-6" />
@@ -129,7 +136,9 @@ export default function CaseStudyPage() {
           </div>
         </Reveal>
 
-        <Reveal as="section" id="system" className="mt-20 scroll-mt-20">
+        <SectionRule />
+
+        <Reveal as="section" id="system" className="scroll-mt-20">
           <SectionHead index="03" title="System" id="system" />
           <p className="type-body measure mt-5">{caseStudy.systemIntro}</p>
 
@@ -172,7 +181,9 @@ export default function CaseStudyPage() {
           <p className="type-body measure mt-2">{caseStudy.infrastructure}</p>
         </Reveal>
 
-        <Reveal as="section" id="current-state" className="mt-20 scroll-mt-20">
+        <SectionRule />
+
+        <Reveal as="section" id="current-state" className="scroll-mt-20">
           <SectionHead index="04" title="Current state" id="current-state" />
           <div className="mt-5 space-y-4">
             {caseStudy.currentState.map((paragraph) => (
@@ -183,7 +194,9 @@ export default function CaseStudyPage() {
           </div>
         </Reveal>
 
-        <Reveal as="section" id="next" className="mt-20 scroll-mt-20">
+        <SectionRule />
+
+        <Reveal as="section" id="next" className="scroll-mt-20">
           <SectionHead index="05" title="What I'm building next" id="next" />
           <div className="mt-5 border-t border-rule">
             {caseStudy.next.map((item) => (
@@ -198,7 +211,9 @@ export default function CaseStudyPage() {
           </div>
         </Reveal>
 
-        <Reveal as="section" id="stack" className="mt-20 scroll-mt-20">
+        <SectionRule />
+
+        <Reveal as="section" id="stack" className="scroll-mt-20">
           <SectionHead index="06" title="Stack" id="stack" />
           <SpecTable items={caseStudy.stack} className="mt-5" />
         </Reveal>
