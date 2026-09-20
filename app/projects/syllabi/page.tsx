@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { ArchitectureDiagram } from "@/app/_components/architecture-diagram";
@@ -10,10 +10,10 @@ import { SpecTable } from "@/app/_components/spec-row";
 import { caseStudy } from "@/app/_content/case-study";
 
 export const metadata: Metadata = {
-  title: "IB Calendar",
+  title: "Syllabi",
   description:
-    "A case study on IB Calendar: a calendar and study hub built around the IB Diploma Programme, used by a small group of students at my school.",
-  alternates: { canonical: "/projects/ib-calendar" },
+    "A case study on Syllabi: a calendar and study hub built around the IB Diploma Programme, used by a small group of students at my school.",
+  alternates: { canonical: "/projects/syllabi" },
 };
 
 /** The article is one grid item, so its rules span the column, not the page. */
@@ -84,6 +84,20 @@ export default function CaseStudyPage() {
         <h1 className="type-h1 mt-6">{caseStudy.title}</h1>
         <p className="type-mono-data mt-3">{caseStudy.subline}</p>
         <p className="type-lead measure-lead mt-5">{caseStudy.standfirst}</p>
+
+        <a
+          href={caseStudy.live.href}
+          target="_blank"
+          rel="noreferrer"
+          className="group -my-3 mt-4 inline-flex items-center gap-2 rounded-chip py-3 text-[13px] text-text"
+        >
+          {caseStudy.live.label}
+          <ArrowUpRight
+            size={14}
+            strokeWidth={1.5}
+            className="text-text-3 transition-all duration-[120ms] ease-standard group-hover:translate-x-[2px] group-hover:text-text-2"
+          />
+        </a>
 
         <SpecTable items={caseStudy.spec} className="mt-8" rowClassName="sm:min-h-11" />
 

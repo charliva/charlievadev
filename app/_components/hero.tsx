@@ -36,10 +36,10 @@ export function Hero() {
           style={step(4)}
         >
           <Link
-            href="/projects/ib-calendar"
+            href="/projects/syllabi"
             className="group -my-3 flex items-center gap-2 rounded-chip py-3 text-[13px] text-text transition-opacity duration-[120ms] active:opacity-80"
           >
-            Read the IB Calendar case study
+            Read the Syllabi case study
             <ArrowRight
               size={14}
               strokeWidth={1.5}

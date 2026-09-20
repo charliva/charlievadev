@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { caseStudy } from "@/app/_content/case-study";
@@ -12,7 +12,7 @@ export function CaseStudyModule() {
   return (
     <div className="rounded-module border border-rule-strong">
       <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-t-module border-b border-rule bg-raised px-4 py-2">
-        <p className="type-mono-label">IB Calendar</p>
+        <p className="type-mono-label">Syllabi</p>
         <p className="type-mono-label">In use · small group</p>
       </div>
 
@@ -41,17 +41,34 @@ export function CaseStudyModule() {
         <WeekSchematic />
       </div>
 
-      <Link
-        href="/projects/ib-calendar"
-        className="group flex min-h-11 items-center justify-between gap-4 rounded-b-module border-t border-rule px-4 py-3 transition-colors duration-[120ms] ease-standard hover:bg-[var(--tint-hover)] active:bg-[var(--tint-active)]"
-      >
-        <span className="type-row-title">Read the full case study</span>
-        <ArrowRight
-          size={14}
-          strokeWidth={1.5}
-          className="shrink-0 text-text-3 transition-all duration-[120ms] ease-standard group-hover:translate-x-[3px] group-hover:text-text-2"
-        />
-      </Link>
+      {/* Two separate links, not one wrapping the other: the case study is the
+          argument, the live app is the evidence. */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 border-t border-rule px-4">
+        <Link
+          href="/projects/syllabi"
+          className="group -mx-2 flex min-h-11 items-center gap-2 rounded-row px-2 transition-colors duration-[120ms] ease-standard hover:bg-[var(--tint-hover)] active:bg-[var(--tint-active)]"
+        >
+          <span className="type-row-title">Read the full case study</span>
+          <ArrowRight
+            size={14}
+            strokeWidth={1.5}
+            className="shrink-0 text-text-3 transition-all duration-[120ms] ease-standard group-hover:translate-x-[3px] group-hover:text-text-2"
+          />
+        </Link>
+        <a
+          href={caseStudy.live.href}
+          target="_blank"
+          rel="noreferrer"
+          className="group -mx-2 flex min-h-11 items-center gap-2 rounded-row px-2 transition-colors duration-[120ms] ease-standard hover:bg-[var(--tint-hover)] active:bg-[var(--tint-active)]"
+        >
+          <span className="type-mono-label">{caseStudy.live.label}</span>
+          <ArrowUpRight
+            size={14}
+            strokeWidth={1.5}
+            className="shrink-0 text-text-3 transition-all duration-[120ms] ease-standard group-hover:translate-x-[2px] group-hover:text-text-2"
+          />
+        </a>
+      </div>
     </div>
   );
 }

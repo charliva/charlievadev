@@ -15,7 +15,7 @@ export const meta = {
   title: "Charlie — student developer in Denmark",
   titleTemplate: "%s · Charlie",
   description:
-    "I'm Charlie, 17, an IB student in Aarhus, Denmark. I build full-stack web software — currently IB Calendar, a calendar and study hub for IB students.",
+    "I'm Charlie, 17, an IB student in Aarhus, Denmark. I build full-stack web software — currently Syllabi, a calendar and study hub for IB students.",
 } as const;
 
 export const hero = {
@@ -26,7 +26,7 @@ export const hero = {
     {
       key: "Focus",
       value:
-        "IB Calendar — a calendar and study app built around the IB Diploma Programme",
+        "Syllabi — a calendar and study app built around the IB Diploma Programme",
     },
     { key: "School", value: "IB Diploma Programme, Aarhus Gymnasium Tilst" },
     {
@@ -42,7 +42,7 @@ export const about = {
   paragraphs: [
     "I found CS50 when I was about seven. I understood a small fraction of it and kept going anyway. For years after that I was mostly learning — reading, following along, rebuilding things that already existed. At some point that stopped being interesting on its own.",
     "The change was an admin dashboard called Bitless: the first project I had to write entirely myself, with no tutorial to follow and no one else's structure to lean on. It's also where I learned that a schema shows through every screen you build on top of it.",
-    "Since then the pattern has been the same. I have a problem, I look at what exists, and if nothing fits the way I work, I build it. IB Calendar started that way. So did the homelab. I learn by building, which means I'm usually working inside a system before I understand every part of it — and then going back for the part I skipped. I'm deliberate about the going-back. Otherwise it's a pile of code that happens to run.",
+    "Since then the pattern has been the same. I have a problem, I look at what exists, and if nothing fits the way I work, I build it. Syllabi started that way. So did the homelab. I learn by building, which means I'm usually working inside a system before I understand every part of it — and then going back for the part I skipped. I'm deliberate about the going-back. Otherwise it's a pile of code that happens to run.",
     "I'm at Aarhus Gymnasium Tilst, and my academic direction right now is medicine. Software isn't the fallback and medicine isn't the exit — I'm interested in science, engineering, and how systems behave when something goes wrong in them. I'd rather keep the direction open than pick an identity at seventeen.",
   ],
   aiNote: {
@@ -90,7 +90,7 @@ export const now = {
   intro: "The gaps I'm working on closing, in the order they matter to me.",
   rows: [
     {
-      title: "Reliability in IB Calendar",
+      title: "Reliability in Syllabi",
       body: "Failure behaviour first: what the app shows when a sync fails or an import reads a date wrong, and which schema decisions would be expensive to change later.",
     },
     {

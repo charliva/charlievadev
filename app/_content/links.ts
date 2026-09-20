@@ -12,7 +12,7 @@ export type ContactLink = {
 };
 
 export const contactIntro =
-  "Email is the best way to reach me. If you're at my school and want IB Calendar, or you've built something near any of this, write to me.";
+  "Email is the best way to reach me. If you're at my school and want Syllabi, or you've built something near any of this, write to me.";
 
 export const CONTACT: ContactLink[] = [
   {

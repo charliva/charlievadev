@@ -1,6 +1,8 @@
 export const caseStudy = {
-  title: "IB Calendar",
+  title: "Syllabi",
   subline: "Case study · Personal project · Built for the IB Diploma Programme",
+  live: { label: "cal.charlieva.dev", href: "https://cal.charlieva.dev" },
+
   standfirst:
     "A calendar that starts from what a school week actually commits you to, and works out what is left.",
 

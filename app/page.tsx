@@ -26,7 +26,7 @@ export default function HomePage() {
         id="case-study"
         index="02"
         label="Case study"
-        heading="IB Calendar case study"
+        heading="Syllabi case study"
       >
         <CaseStudyModule />
       </RailSection>

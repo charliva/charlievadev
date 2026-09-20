@@ -1,7 +1,7 @@
 # charlieva.dev
 
 My personal site: a short introduction, a list of what I've built, and a case
-study on IB Calendar.
+study on Syllabi.
 
 ## Stack
 
@@ -25,7 +25,7 @@ component:
 | `site.ts` | Name, contact details, hero, about, stack and "now" copy |
 | `links.ts` | Contact rows. Set `href` to a URL and the row goes live; `null` renders an unset slot |
 | `projects.ts` | Work and experiment rows |
-| `case-study.ts` | Everything on `/projects/ib-calendar` |
+| `case-study.ts` | Everything on `/projects/syllabi` |
 
 Search for `TODO(charlie)` before publishing — those are claims that need
 confirming.

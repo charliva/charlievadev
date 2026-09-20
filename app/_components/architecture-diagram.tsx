@@ -193,7 +193,7 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
 
   return (
     <figure
-      aria-label="How IB Calendar fits together"
+      aria-label="How Syllabi fits together"
       className={cn("mx-auto w-full max-w-page", className)}
     >
       <p className="sr-only">{SR_DESCRIPTION}</p>

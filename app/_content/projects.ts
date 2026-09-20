@@ -14,13 +14,13 @@ export type ProjectRow = {
 
 export const WORK: ProjectRow[] = [
   {
-    title: "IB Calendar",
+    title: "Syllabi",
     tag: "In use",
     live: true,
     description:
-      "A calendar that tries to answer what I should be doing right now, not just what is already scheduled.",
+      "A calendar and study hub built around the IB Diploma Programme. It tries to answer what I should be doing right now, not just what is already scheduled.",
     stack: ["next.js", "typescript", "supabase", "postgres", "vercel ai sdk"],
-    href: "/projects/ib-calendar",
+    href: "/projects/syllabi",
     cta: "Case study",
   },
   {
