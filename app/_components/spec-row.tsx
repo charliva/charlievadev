@@ -21,7 +21,7 @@ export function SpecTable({
   rowClassName?: string;
 }) {
   return (
-    <dl className={cn("border-t border-rule", className)}>
+    <dl className={cn(className)}>
       {items.map((item) => (
         <div
           key={item.key}

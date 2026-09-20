@@ -12,7 +12,7 @@ import { Reveal } from "./reveal";
 export function PageGrid({ children }: { children: ReactNode }) {
   return (
     <div className="px-5 sm:px-6">
-      <div className="relative mx-auto grid max-w-column grid-cols-1 lg:max-w-page lg:grid-cols-[112px_672px] lg:gap-x-gutter">
+      <div className="relative mx-auto grid max-w-column grid-cols-1 pb-14 sm:pb-20 lg:max-w-page lg:grid-cols-[112px_672px] lg:gap-x-gutter">
         <div
           aria-hidden="true"
           className="absolute bottom-0 left-rail top-0 hidden w-px bg-rule-strong lg:block"
@@ -65,12 +65,14 @@ export function RailSection({
 }: RailSectionProps) {
   return (
     <>
-      <div
-        aria-hidden="true"
-        className="hidden self-start lg:sticky lg:top-[76px] lg:block"
-      >
-        {/* Two lines on purpose: "01 / EXPERIMENTS" does not fit 112px. */}
-        <div className="pr-4">
+      {/*
+        The grid item stretches to the row height and the sticky element lives
+        inside it. Sticking the grid item itself pins every label to the top of
+        the page instead of releasing it at the end of its own section.
+      */}
+      <div aria-hidden="true" className="hidden lg:block">
+        <div className="sticky top-[76px] pr-4">
+          {/* Two lines on purpose: "01 / EXPERIMENTS" does not fit 112px. */}
           <div className="flex items-center gap-2">
             <span className="h-px w-3 bg-rule-strong" />
             <span className="type-mono-index">{index}</span>

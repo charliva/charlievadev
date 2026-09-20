@@ -41,7 +41,7 @@ function Flow({ steps }: { steps: readonly string[] }) {
           {index > 0 ? (
             <span aria-hidden="true" className="mx-2 h-px w-4 bg-rule sm:w-5" />
           ) : null}
-          <span className="type-mono-data rounded-chip border border-line-int bg-raised px-2 py-1 text-text-2">
+          <span className="type-mono-data rounded-chip bg-raised px-2 py-1 text-text-2">
             {step}
           </span>
         </li>
@@ -66,7 +66,7 @@ export default function CaseStudyPage() {
       <article className="min-w-0 pb-8 pt-10 sm:pt-14 lg:col-start-2">
         <Link
           href="/"
-          className="group inline-flex items-center gap-2 rounded-chip text-text-3 transition-colors duration-[120ms] hover:text-text-2"
+          className="group -my-4 inline-flex items-center gap-2 rounded-chip py-4 text-text-3 transition-colors duration-[120ms] hover:text-text-2"
         >
           <ArrowLeft
             size={14}
@@ -89,7 +89,7 @@ export default function CaseStudyPage() {
               <li key={section.id} className="border-b border-rule">
                 <a
                   href={`#${section.id}`}
-                  className="flex items-baseline gap-3 py-[10px] text-[14px] text-text"
+                  className="flex items-baseline gap-3 py-[13px] text-[14px] text-text"
                 >
                   <span className="type-mono-index">{section.index}</span>
                   {section.title}
@@ -99,7 +99,7 @@ export default function CaseStudyPage() {
           </ol>
         </nav>
 
-        <Reveal as="section" id="problem" className="mt-14 scroll-mt-20">
+        <Reveal as="section" id="problem" className="mt-20 scroll-mt-20">
           <SectionHead index="01" title="Problem" id="problem" />
           <div className="mt-5 space-y-4">
             {caseStudy.problem.map((paragraph) => (
@@ -108,7 +108,7 @@ export default function CaseStudyPage() {
               </p>
             ))}
           </div>
-          <figure className="mt-8 border-l border-rule-strong pl-6">
+          <figure className="mt-8">
             <p className="type-pull-quote measure">{caseStudy.pullQuote.text}</p>
             <figcaption className="type-mono-label mt-3">
               {caseStudy.pullQuote.attribution}
@@ -116,7 +116,7 @@ export default function CaseStudyPage() {
           </figure>
         </Reveal>
 
-        <Reveal as="section" id="idea" className="mt-14 scroll-mt-20">
+        <Reveal as="section" id="idea" className="mt-20 scroll-mt-20">
           <SectionHead index="02" title="Idea" id="idea" />
           <p className="type-body measure mt-5">{caseStudy.idea[0]}</p>
           <SpecTable items={caseStudy.ideaKeys} className="mt-6" />
@@ -129,7 +129,7 @@ export default function CaseStudyPage() {
           </div>
         </Reveal>
 
-        <Reveal as="section" id="system" className="mt-14 scroll-mt-20">
+        <Reveal as="section" id="system" className="mt-20 scroll-mt-20">
           <SectionHead index="03" title="System" id="system" />
           <p className="type-body measure mt-5">{caseStudy.systemIntro}</p>
 
@@ -172,7 +172,7 @@ export default function CaseStudyPage() {
           <p className="type-body measure mt-2">{caseStudy.infrastructure}</p>
         </Reveal>
 
-        <Reveal as="section" id="current-state" className="mt-14 scroll-mt-20">
+        <Reveal as="section" id="current-state" className="mt-20 scroll-mt-20">
           <SectionHead index="04" title="Current state" id="current-state" />
           <div className="mt-5 space-y-4">
             {caseStudy.currentState.map((paragraph) => (
@@ -183,7 +183,7 @@ export default function CaseStudyPage() {
           </div>
         </Reveal>
 
-        <Reveal as="section" id="next" className="mt-14 scroll-mt-20">
+        <Reveal as="section" id="next" className="mt-20 scroll-mt-20">
           <SectionHead index="05" title="What I'm building next" id="next" />
           <div className="mt-5 border-t border-rule">
             {caseStudy.next.map((item) => (
@@ -198,7 +198,7 @@ export default function CaseStudyPage() {
           </div>
         </Reveal>
 
-        <Reveal as="section" id="stack" className="mt-14 scroll-mt-20">
+        <Reveal as="section" id="stack" className="mt-20 scroll-mt-20">
           <SectionHead index="06" title="Stack" id="stack" />
           <SpecTable items={caseStudy.stack} className="mt-5" />
         </Reveal>

@@ -83,7 +83,8 @@ const COLUMNS: readonly DiagramColumn[] = [
   },
 ];
 
-const RESTING_CAPTION = "Choose a node to read what that part of the system does.";
+const RESTING_CAPTION =
+  "The browser talks to the server; the server owns every read, write and scheduled job; Postgres holds the data.";
 
 /*
  * Explicit placement keeps one set of buttons for both layouts: DOM order is

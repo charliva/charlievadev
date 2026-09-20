@@ -99,7 +99,7 @@ export function CopyEmail({ email }: { email: string }) {
       <a
         ref={addressRef}
         href={`mailto:${email}`}
-        className="prose-link min-w-0 break-words rounded-chip font-mono text-[13px]"
+        className="prose-link -my-3 min-w-0 break-words rounded-chip py-3 font-mono text-[13px]"
       >
         {email}
       </a>

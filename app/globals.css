@@ -150,12 +150,14 @@
     @apply rounded-chip bg-raised px-[6px] py-[2px] font-mono text-[12.5px] text-text;
   }
 
+  /* Instrument Sans has a narrow `ch`: 66ch measured ~87 characters a line.
+     These land body text near 72 and the lead near 66. */
   .measure {
-    max-width: 66ch;
+    max-width: 54ch;
   }
 
   .measure-lead {
-    max-width: 60ch;
+    max-width: 48ch;
   }
 }
 
@@ -190,6 +192,7 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;

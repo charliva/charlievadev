@@ -15,8 +15,8 @@ function step(index: number) {
 export function Hero() {
   return (
     <>
-      <div aria-hidden="true" className="hidden self-start pt-2 lg:block">
-        <span className="block h-px w-2 bg-rule-strong" />
+      <div aria-hidden="true" className="hidden self-start pt-12 sm:pt-[72px] lg:block">
+        <span className="block h-px w-3 bg-rule-strong" />
       </div>
       <section className="min-w-0 pb-2 pt-10 sm:pt-16 lg:col-start-2">
         <p className="type-mono-label hero-step" style={step(0)}>
@@ -37,7 +37,7 @@ export function Hero() {
         >
           <Link
             href="/projects/ib-calendar"
-            className="group flex items-center gap-2 rounded-chip text-[13px] text-text transition-opacity duration-[120ms] active:opacity-80"
+            className="group -my-3 flex items-center gap-2 rounded-chip py-3 text-[13px] text-text transition-opacity duration-[120ms] active:opacity-80"
           >
             Read the IB Calendar case study
             <ArrowRight
@@ -50,7 +50,7 @@ export function Hero() {
             href={site.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="group flex items-center gap-2 rounded-chip text-[13px] text-text transition-opacity duration-[120ms] active:opacity-80"
+            className="group -my-3 flex items-center gap-2 rounded-chip py-3 text-[13px] text-text transition-opacity duration-[120ms] active:opacity-80"
           >
             GitHub
             <ArrowUpRight

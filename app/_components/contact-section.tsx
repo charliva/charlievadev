@@ -24,7 +24,7 @@ export function ContactSection() {
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noreferrer" : undefined}
-                  className="group inline-flex items-center gap-2 rounded-chip font-mono text-[13px] text-text"
+                  className="group -my-3 inline-flex items-center gap-2 rounded-chip py-3 font-mono text-[13px] text-text"
                 >
                   <span className="underline decoration-[color-mix(in_oklch,currentColor_45%,transparent)] decoration-1 underline-offset-[3px] transition-colors duration-[180ms] group-hover:decoration-signal">
                     {link.value}

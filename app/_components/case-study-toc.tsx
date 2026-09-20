@@ -78,7 +78,7 @@ export function CaseStudyToc({ sections, className }: CaseStudyTocProps) {
                 href={`#${section.id}`}
                 aria-current={isActive ? "true" : undefined}
                 className={cn(
-                  "flex items-center gap-[10px] rounded-chip py-[6px] pr-2 transition-colors duration-[120ms] ease-standard",
+                  "flex items-center gap-[10px] rounded-chip py-[15px] pr-2 transition-colors duration-[120ms] ease-standard",
                   isActive ? "text-text" : "text-text-3 hover:text-text-2",
                 )}
               >

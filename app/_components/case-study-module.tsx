@@ -25,7 +25,7 @@ export function CaseStudyModule() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-px border-t border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-px border-t border-rule bg-rule sm:grid-cols-2">
         {caseStudy.arc.map((beat) => (
           <div key={beat.label} className="bg-bg p-4">
             <div className="flex items-baseline gap-2">

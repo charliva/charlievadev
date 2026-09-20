@@ -114,7 +114,7 @@ export function ListRow({ row }: { row: ProjectRow }) {
 
 export function RowList({ rows }: { rows: readonly ProjectRow[] }) {
   return (
-    <div className="divide-y divide-rule border-y border-rule">
+    <div className="divide-y divide-rule border-b border-rule">
       {rows.map((row) => (
         <div key={row.title} className="py-1">
           <ListRow row={row} />

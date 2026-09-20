@@ -81,7 +81,7 @@ export function SiteHeader() {
             ) : (
               <Link
                 href="/"
-                className="rounded-chip text-[14px] font-medium text-text transition-opacity duration-[120ms] hover:opacity-80"
+                className="-my-3 rounded-chip py-3 text-[14px] font-medium text-text transition-opacity duration-[120ms] hover:opacity-80"
               >
                 {site.name}
               </Link>
@@ -105,7 +105,7 @@ export function SiteHeader() {
                   key={item.id}
                   href={`/#${item.id}`}
                   className={cn(
-                    "relative rounded-chip py-1 text-[12px] transition-colors duration-[120ms] ease-standard sm:text-[13px]",
+                    "relative -my-[13px] rounded-chip py-[13px] text-[12px] transition-colors duration-[120ms] ease-standard sm:text-[13px]",
                     isActive ? "text-text" : "text-text-2 hover:text-text",
                   )}
                 >
@@ -113,7 +113,7 @@ export function SiteHeader() {
                   {isActive ? (
                     <motion.span
                       layoutId={reduceMotion ? undefined : "nav-underline"}
-                      className="absolute -bottom-[1px] left-0 right-0 h-px bg-signal"
+                      className="absolute bottom-[10px] left-0 right-0 h-px bg-signal"
                       transition={{ type: "spring", stiffness: 520, damping: 42, mass: 0.9 }}
                     />
                   ) : null}

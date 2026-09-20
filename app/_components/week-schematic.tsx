@@ -252,6 +252,24 @@ export function WeekSchematic({ className }: { className?: string }) {
 
   return (
     <figure className={cn("min-w-0", className)}>
+      {/*
+        The drawing scales with its container, so inside the module on a phone
+        the in-SVG labels land near 4px. Below 640px they are replaced by this
+        HTML row, which stays at its own size whatever the drawing does.
+      */}
+      <div
+        aria-hidden="true"
+        className="mb-2 grid grid-cols-7 gap-[6px] pl-[6%] sm:hidden"
+      >
+        {WEEK_SHAPE.map((day, index) => (
+          <span
+            key={`${day.initial}-${index}`}
+            className="type-mono-index text-center"
+          >
+            {day.initial}
+          </span>
+        ))}
+      </div>
       <motion.svg
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
         preserveAspectRatio="xMidYMid meet"
