@@ -192,7 +192,10 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
   }
 
   return (
-    <figure className={cn("mx-auto w-full max-w-page", className)}>
+    <figure
+      aria-label="How IB Calendar fits together"
+      className={cn("mx-auto w-full max-w-page", className)}
+    >
       <p className="sr-only">{SR_DESCRIPTION}</p>
 
       <div className="grid grid-cols-1 gap-y-3 sm:grid-cols-[1fr_44px_1fr_44px_1fr]">
@@ -272,16 +275,20 @@ export function ArchitectureDiagram({ className }: { className?: string }) {
         viewport grows instead of being clipped away.
       */}
       <div className="mt-4 border-t border-rule pt-3">
-        <p
-          aria-live="polite"
-          aria-atomic="true"
+        {/*
+          Not a live region: every node points at this element with
+          aria-describedby, so a screen reader reads the caption as part of the
+          node it just landed on. Announcing it again live would double every
+          Tab press.
+        */}
+        <figcaption
           className={cn(
             "type-small measure min-h-[64px] sm:min-h-[44px]",
             activeNode ? "text-text-2" : "text-text-3",
           )}
         >
           {activeNode ? activeNode.caption : RESTING_CAPTION}
-        </p>
+        </figcaption>
       </div>
     </figure>
   );

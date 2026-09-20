@@ -68,7 +68,9 @@ export default function RootLayout({
         >
           <SkipLink />
           <SiteHeader />
-          <main id="content">{children}</main>
+          <main id="content" tabIndex={-1}>
+            {children}
+          </main>
           <SiteFooter />
         </ThemeProvider>
       </body>

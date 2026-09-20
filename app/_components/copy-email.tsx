@@ -72,7 +72,10 @@ export function CopyEmail({ email }: { email: string }) {
     if (copied) {
       setStatus("copied");
       announce("Email address copied");
-      timerRef.current = window.setTimeout(() => setStatus("idle"), COPIED_MS);
+      timerRef.current = window.setTimeout(() => {
+        setStatus("idle");
+        setAnnouncement("");
+      }, COPIED_MS);
       return;
     }
 
@@ -85,7 +88,10 @@ export function CopyEmail({ email }: { email: string }) {
         ? `Email address selected. Press ${keys} to copy.`
         : `Copying failed. The address is ${email}.`,
     );
-    timerRef.current = window.setTimeout(() => setStatus("idle"), MANUAL_MS);
+    timerRef.current = window.setTimeout(() => {
+      setStatus("idle");
+      setAnnouncement("");
+    }, MANUAL_MS);
   }, [announce, email]);
 
   const travel = reduceMotion ? 0 : 4;

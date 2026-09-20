@@ -39,7 +39,6 @@ export function ContactSection() {
                 </a>
               ) : (
                 <span
-                  aria-disabled="true"
                   className="cursor-default font-mono text-[13px] text-text-3 underline decoration-rule-strong decoration-dotted decoration-1 underline-offset-[3px]"
                 >
                   {link.value}

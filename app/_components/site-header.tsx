@@ -97,7 +97,7 @@ export function SiteHeader() {
             </span>
           </div>
 
-          <nav className="flex items-center gap-4 sm:gap-5">
+          <nav aria-label="Main" className="flex items-center gap-4 sm:gap-5">
             {NAV.map((item) => {
               const isActive = isHome && active === item.id;
               return (

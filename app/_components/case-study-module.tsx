@@ -10,8 +10,8 @@ import { WeekSchematic } from "./week-schematic";
  */
 export function CaseStudyModule() {
   return (
-    <div className="overflow-hidden rounded-module border border-rule-strong">
-      <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-rule bg-raised px-4 py-2">
+    <div className="rounded-module border border-rule-strong">
+      <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-t-module border-b border-rule bg-raised px-4 py-2">
         <p className="type-mono-label">IB Calendar</p>
         <p className="type-mono-label">In use · small group</p>
       </div>
@@ -43,7 +43,7 @@ export function CaseStudyModule() {
 
       <Link
         href="/projects/ib-calendar"
-        className="group flex min-h-11 items-center justify-between gap-4 border-t border-rule px-4 py-3 transition-colors duration-[120ms] ease-standard hover:bg-[var(--tint-hover)] active:bg-[var(--tint-active)]"
+        className="group flex min-h-11 items-center justify-between gap-4 rounded-b-module border-t border-rule px-4 py-3 transition-colors duration-[120ms] ease-standard hover:bg-[var(--tint-hover)] active:bg-[var(--tint-active)]"
       >
         <span className="type-row-title">Read the full case study</span>
         <ArrowRight
