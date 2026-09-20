@@ -1,11 +1,12 @@
 export const caseStudy = {
-  title: "IB Calendar / Study Hub",
+  title: "IB Calendar",
   subline: "Case study · Personal project · Built for the IB Diploma Programme",
-  standfirst: "A calendar and study hub for the IB Diploma Programme.",
+  standfirst:
+    "A calendar that starts from what a school week actually commits you to, and works out what is left.",
 
   /** No numbers of any kind belong in this table. */
   spec: [
-    { key: "Role", value: "Design, architecture, implementation — all of it" },
+    { key: "Role", value: "Design, architecture and implementation" },
     { key: "Type", value: "Personal project" },
     { key: "Status", value: "In use by a small group of students at my school" },
     { key: "Surface", value: "Web app" },
@@ -18,8 +19,7 @@ export const caseStudy = {
     { key: "Timeframe", value: "Ongoing" },
     {
       key: "Not included",
-      value:
-        "No user numbers, no revenue, no growth charts. It's early, and a small group of people at my school use it.",
+      value: "No user numbers, no revenue, no growth charts. It's too early to have any.",
     },
   ],
 
@@ -33,7 +33,7 @@ export const caseStudy = {
     {
       index: "02",
       label: "Idea",
-      body: "Start from commitments rather than events, and make putting something in nearly free.",
+      body: "Start from what a week already commits you to, and make putting something in nearly free.",
     },
     {
       index: "03",
@@ -66,7 +66,7 @@ export const caseStudy = {
   problem: [
     "My timetable lives in one place. My homework lives in another. Assessment dates usually live in a photo of a slide. None of them know about each other, so I was the integration layer, and I was bad at it.",
     "Calendar apps store events. On a Tuesday evening with four hours free and a week of work behind me, a calendar can tell me what's scheduled and nothing about what to do. A free hour before a test and a free hour on a Friday afternoon look identical to it. I was doing that reasoning in my head, every day, badly.",
-    "The question I wanted answered was never “what's on Thursday”. It was what to do with the next two hours.",
+    "The question I wanted answered was never what is on Thursday. It was what to do with the next two hours.",
   ],
   pullQuote: {
     text: "What should I actually do with my time right now?",
@@ -83,8 +83,8 @@ export const caseStudy = {
     { key: "Intention", value: "What I said I wanted to get done this week." },
   ],
   idea: [
-    "Start from commitments, not events. Once an app knows those four things, a suggestion becomes possible — one I'm free to ignore.",
-    "The second idea is that capture has to be nearly free. A planner you have to feed gets abandoned in week two. Adding a term of deadlines should be a screenshot. Adding one event should be a sentence.",
+    "Start from commitments, not events. To answer that question, an app has to know four things:",
+    "Once it knows those, a suggestion becomes possible — one I'm free to ignore. The second idea is that capture has to be nearly free. A planner you have to feed gets abandoned in week two. Adding a term of deadlines should be a screenshot. Adding one event should be a sentence.",
     "So I built the calendar first, to stop retyping my timetable. Then assignments, because a timetable without deadlines is half a picture. Then assessments, then study time. By then it wasn't a calendar.",
   ],
 
@@ -111,7 +111,7 @@ export const caseStudy = {
     },
     {
       title: "Learning signals",
-      body: "What I accept, move or ignore gets recorded and fed back into later recommendations. This is the part that makes it personal rather than generic — the app is meant to get less wrong about me over time.",
+      body: "What I accept, move or ignore gets recorded and fed back into later recommendations. This is the part that makes it personal: the app is meant to get less wrong about me over time.",
     },
   ],
 
@@ -150,7 +150,7 @@ export const caseStudy = {
     "Next.js on Vercel with Cloudflare in front, Supabase for Postgres and auth, and GitHub Actions for the jobs that need to run on a schedule rather than when someone opens a page. Reminders and push notifications are what turn a planner into something that reaches you.",
 
   currentState: [
-    "It works, it's in daily use, and it's early. A small group of students at my school use it alongside me, which is the most useful thing that has happened to it — other people's timetables break assumptions mine never would have. Otherwise I find bugs by using my own app, which is a method with a known limit. There's no launch and no numbers to quote.",
+    "It works, and it's early. A small group of students at my school use it alongside me, which is the most useful thing that has happened to it: a second timetable finds assumptions a single one never would. Otherwise I find bugs by using my own app, which is a method with a known limit.",
     "I've stopped treating it as a prototype I'll throw away. That changes what I worry about: which schema decisions would be expensive to change later, what the app shows when a sync fails or a model misreads a slide, and what data it holds and whether it needs to hold it.",
   ],
 

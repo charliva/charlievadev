@@ -10,7 +10,7 @@ import { SpecTable } from "@/app/_components/spec-row";
 import { caseStudy } from "@/app/_content/case-study";
 
 export const metadata: Metadata = {
-  title: "IB Calendar / Study Hub",
+  title: "IB Calendar",
   description:
     "A case study on IB Calendar: a calendar and study hub built around the IB Diploma Programme, used by a small group of students at my school.",
   alternates: { canonical: "/projects/ib-calendar" },

@@ -14,11 +14,11 @@ export type ProjectRow = {
 
 export const WORK: ProjectRow[] = [
   {
-    title: "IB Calendar / Study Hub",
+    title: "IB Calendar",
     tag: "In use",
     live: true,
     description:
-      "A calendar that tries to answer what I should be doing right now. It syncs my school timetable, tracks assignments and assessments, and plans study time around the hours I actually have.",
+      "A calendar that tries to answer what I should be doing right now, not just what is already scheduled.",
     stack: ["next.js", "typescript", "supabase", "postgres", "vercel ai sdk"],
     href: "/projects/ib-calendar",
     cta: "Case study",
@@ -27,7 +27,7 @@ export const WORK: ProjectRow[] = [
     title: "Unedited",
     tag: "Previous site",
     description:
-      "My previous site, and an argument for taking things out. A minimalist portfolio designed against Dieter Rams' principles, which in practice meant deleting things until what was left had a reason to be there. This site replaces it.",
+      "My previous site, and an argument for taking things out. A minimalist portfolio designed around Dieter Rams' principles, which in practice meant deleting things until what was left had a reason to be there. It had a blog attached. This site replaces both.",
     stack: ["next.js", "react", "typescript", "tailwind"],
   },
   {

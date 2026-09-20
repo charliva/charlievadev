@@ -45,7 +45,6 @@ export default function HomePage() {
           <p className="type-small measure mt-2">{about.aiNote.body}</p>
         </div>
 
-        <SpecTable items={about.spec} className="mt-8" />
       </RailSection>
 
       <RailSection id="stack" index="04" label="Stack" heading="Things I work with">

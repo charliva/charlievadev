@@ -38,7 +38,7 @@ const COLUMNS: readonly DiagramColumn[] = [
   },
   {
     id: "runtime",
-    title: "Edge + runtime",
+    title: "Server",
     nodes: [
       {
         id: "handlers",

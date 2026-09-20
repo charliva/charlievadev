@@ -214,7 +214,7 @@ function DayColumn({
         y={13}
         dx="-0.05em"
         textAnchor="middle"
-        className="type-mono-index fill-text-3"
+        className="type-mono-index hidden fill-text-3 sm:inline"
       >
         {day.initial}
       </text>
@@ -286,7 +286,7 @@ export function WeekSchematic({ className }: { className?: string }) {
               y={railY(tick)}
               dy="0.32em"
               textAnchor="end"
-              className="type-mono-index fill-text-3"
+              className="type-mono-index hidden fill-text-3 sm:inline"
             >
               {String(tick).padStart(2, "0")}
             </text>

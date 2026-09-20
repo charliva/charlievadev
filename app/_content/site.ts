@@ -9,11 +9,6 @@ export const site = {
   email: "charlie@charlieva.dev",
   github: "charliva",
   githubUrl: "https://github.com/charliva",
-  /**
-   * Shown next to the NOW heading. If you stop editing this, delete the
-   * section rather than letting it rot.
-   */
-  nowUpdated: "September 2026",
 } as const;
 
 export const meta = {
@@ -39,7 +34,7 @@ export const hero = {
       value: "typescript · next.js · supabase · postgres",
       mono: true,
     },
-    { key: "Direction", value: "Medicine and software engineering — still deciding" },
+    { key: "Direction", value: "Medicine and software engineering, deliberately both for now" },
   ],
 } as const;
 
@@ -54,15 +49,11 @@ export const about = {
     label: "On AI-assisted work",
     body: "I use AI-assisted tools every day, and I'm specific about what they do. I design the architecture, the database, the product behaviour and the UX. The tools write code faster than I do. They don't decide how the system works, and I don't ship things I can't debug.",
   },
-  spec: [
-    { key: "Based", value: "Aarhus, Denmark" },
-    { key: "Studying", value: "IB Diploma Programme" },
-  ],
 } as const;
 
 export const stack = {
   intro:
-    "I'm strongest in modern full-stack web development. Most of the rest I picked up because something I was building needed it.",
+    "I'm strongest in full-stack web development. Most of the rest I picked up because something I was building needed it.",
   rows: [
     {
       key: "Frontend",
@@ -82,7 +73,7 @@ export const stack = {
     {
       key: "AI",
       value:
-        "The Vercel AI SDK and LLM APIs, used as an ordinary part of an application's architecture rather than a chatbot bolted on the side.",
+        "The Vercel AI SDK and LLM APIs, used as an ordinary part of an application's architecture — a component, not a chatbot bolted on the side.",
     },
     {
       key: "Improving",
@@ -92,12 +83,11 @@ export const stack = {
     },
   ],
   footnote:
-    "Everything above is in progress. I'm 17 and this is the list I'm actually working through.",
+    "The last row is the honest one: it's what I'm working through now, not a list of things I've finished.",
 } as const;
 
 export const now = {
-  intro:
-    "I'm comfortable building things before I understand every part of them. It keeps me moving, and it leaves gaps. This is the list of gaps.",
+  intro: "The gaps I'm working on closing, in the order they matter to me.",
   rows: [
     {
       title: "Reliability in IB Calendar",

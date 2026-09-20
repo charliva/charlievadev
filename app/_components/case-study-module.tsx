@@ -12,7 +12,7 @@ export function CaseStudyModule() {
   return (
     <div className="overflow-hidden rounded-module border border-rule-strong">
       <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-rule bg-raised px-4 py-2">
-        <p className="type-mono-label">IB Calendar / Study Hub</p>
+        <p className="type-mono-label">IB Calendar</p>
         <p className="type-mono-label">In use · small group</p>
       </div>
 
