@@ -69,11 +69,10 @@ export const EXPERIMENTS: ProjectRow[] = [
   {
     title: "This site",
     tag: "Ongoing",
-    // TODO(charlie): if you make the repo public, add
-    // `href: "https://github.com/charliva/charlievadev", external: true`
-    // and the row links itself.
     description:
-      "No database, no CMS, no analytics. All the copy lives in four typed files, so changing it is a one-line edit.",
+      "No database, no CMS, no analytics. All the copy lives in four typed files, so changing it is a one-line edit. The source is public.",
+    href: "https://github.com/charliva/charlievadev",
+    external: true,
     stack: ["next.js", "tailwind", "vercel"],
   },
 ];
