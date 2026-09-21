@@ -173,6 +173,14 @@ export const caseStudy = {
       tag: "Exploring",
       body: "Security, data handling and schema work as the tables fill up: auth edges, row-level policies, and storing less in the first place.",
     },
+    {
+      tag: "Exploring",
+      body: "Onboarding, and how much is on screen. Everything the app knows wants to be visible at once, which is the wrong instinct. Someone opening it for the first time finds that faster than I do.",
+    },
+    {
+      tag: "Direction",
+      body: "Less a calendar with smart features, more a study system: enough context that the app can answer what to do next, instead of leaving you to assemble the answer from four screens.",
+    },
   ],
 
   stack: [
