@@ -1,100 +1,96 @@
-import HeroSection from "./_components/hero-section";
-import { ServiceCard } from "./_components/homepageSections";
-import { ProjectCard } from "./_components/projectCard";
-import { BlogCard } from "./_components/blogSection";
+import type { Metadata } from "next";
 
-const posts = [
-  {
-    title: "Case Study: Minimalist Design",
-    imagePath: "/blog-minimalist-case-study.png",
-    description: "Exploring the origins, benefits, and principles of minimalist design",
-    date: "December 25th 2024",
-    blogUrl: "https://blog.unedited.site/minimalism",
-  },
-];
+import { CaseStudyModule } from "./_components/case-study-module";
+import { ContactSection } from "./_components/contact-section";
+import { Hero } from "./_components/hero";
+import { RowList } from "./_components/list-row";
+import { PageGrid, RailSection } from "./_components/page-grid";
+import { SpecTable } from "./_components/spec-row";
+import { about, now, stack } from "./_content/site";
+import { EXPERIMENTS, WORK } from "./_content/projects";
 
-const projects = [
-  {
-    title: "Unedited v2",
-    description: "A minimal portfolio built with Next.js and TailwindCSS",
-    imagePath: "/Unedited.png",
-    projectUrl: "/projects/posts/Unedited",
-    tech: ["Next.js", "TailwindCSS"],
-  },
-  {
-    title: "Bitless Dashboard",
-    description: "Admin dashboard for managing products and users",
-    imagePath: "/Bitless.png",
-    projectUrl: "/projects/posts/Bitless",
-    tech: ["Golang", "React", "Postgres"],
-  },
-];
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
-const services = [
-  {
-    iconType: "web" as const,
-    title: "Web Development",
-    description: "Creating responsive and modern web applications with React and Next.js",
-  },
-  {
-    iconType: "mobile" as const,
-    title: "iOS Development",
-    description: "Building native iOS applications using Swift and modern frameworks",
-  },
-  {
-    iconType: "backend" as const,
-    title: "Backend Solutions",
-    description: "Developing scalable backend services with Golang and cloud technologies",
-  },
-  {
-    iconType: "palette" as const,
-    title: "UI/UX Design",
-    description: "Designing user interfaces that are intuitive and visually appealing",
-  },
-  {
-    iconType: "cms" as const,
-    title: "CMS Development",
-    description: "Creating custom CMS for managing content with Sanity",
-  },
-];
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen">
-      <HeroSection />
-  <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-8">
-        <section>
-          <h2 className="text-2xl font-semibold tracking-tight mb-12 text-center">
-            What I Do
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-            {services.map((service, index) => (
-              <ServiceCard key={index} {...service} />
-            ))}
-          </div>
-        </section>
-        <section>
-          <h2 className="text-2xl font-semibold tracking-tight mb-12 text-center">
-            Latest Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
-            ))}
-          </div>
-        </section>
-        <section>
-          <h2 className="text-2xl font-semibold tracking-tight mb-12 text-center">
-            Latest Blog Posts
-          </h2>
-          <div className="grid grid-cols-1 gap-6">
-            {posts.map((post) => (
-              <BlogCard key={post.title} {...post} />
-            ))}
-          </div>
-        </section>
-      </div>
-    </main>
+    <PageGrid>
+      <Hero />
+
+      <RailSection id="work" index="01" label="Work" heading="Selected work">
+        <RowList rows={WORK} />
+      </RailSection>
+
+      <RailSection
+        id="case-study"
+        index="02"
+        label="Case study"
+        heading="Syllabi case study"
+      >
+        <CaseStudyModule />
+      </RailSection>
+
+      <RailSection id="about" index="03" label="About" heading="About">
+        <div className="space-y-4">
+          {about.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className="type-body measure">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        <div className="mt-8">
+          <p className="type-mono-label">{about.aiNote.label}</p>
+          <p className="type-small measure mt-2">{about.aiNote.body}</p>
+        </div>
+
+      </RailSection>
+
+      <RailSection id="stack" index="04" label="Stack" heading="Things I work with">
+        <p className="type-body measure">{stack.intro}</p>
+        <SpecTable items={stack.rows} className="mt-6" />
+        <p className="type-small mt-4 text-text-3">{stack.footnote}</p>
+      </RailSection>
+
+      <RailSection
+        id="experiments"
+        index="05"
+        label="Experiments"
+        heading="Experiments"
+      >
+        <RowList rows={EXPERIMENTS} />
+      </RailSection>
+
+      <RailSection id="now" index="06" label="Now" heading="What I'm learning">
+        <p className="type-body measure">{now.intro}</p>
+        <div className="mt-6 border-t border-rule">
+          {now.rows.map((row, index) => (
+            <div
+              key={row.title}
+              className="grid grid-cols-[auto_1fr] gap-x-4 border-b border-rule py-4"
+            >
+              <span className="type-mono-index pt-[5px]">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className="min-w-0">
+                <h3 className="type-row-title">{row.title}</h3>
+                <p className="type-small measure mt-1">{row.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </RailSection>
+
+      <RailSection
+        id="contact"
+        index="07"
+        label="Contact"
+        heading="Contact"
+        separator={false}
+      >
+        <ContactSection />
+      </RailSection>
+    </PageGrid>
   );
 }
-
