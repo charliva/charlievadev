@@ -35,9 +35,7 @@ export const WORK: ProjectRow[] = [
     tag: "Earlier project",
     description:
       "An admin dashboard for managing product and user data — the first project I had to write entirely myself. It taught me data modelling, CRUD architecture, writing TypeScript someone else has to read, and keeping a codebase legible past the fun part.",
-    // TODO(charlie): the old site described Bitless as Golang/React/Postgres in
-    // one place and Next.js/React/Supabase in another. Add the stack back here
-    // once you confirm which is right — shipping a guess is worse than no line.
+    stack: ["next.js", "react", "supabase"],
   },
 ];
 
