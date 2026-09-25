@@ -9,7 +9,6 @@ export const caseStudy = {
   /** No numbers of any kind belong in this table. */
   spec: [
     { key: "Role", value: "Design, architecture and implementation" },
-    { key: "Type", value: "Personal project" },
     { key: "Status", value: "In use by a small group of students at my school" },
     { key: "Surface", value: "Web app" },
     {
@@ -17,35 +16,6 @@ export const caseStudy = {
       value:
         "next.js · react · typescript · supabase · postgres · vercel · cloudflare · vercel ai sdk · github actions",
       mono: true,
-    },
-    { key: "Timeframe", value: "Ongoing" },
-    {
-      key: "Not included",
-      value: "No user numbers, no revenue, no growth charts. It's too early to have any.",
-    },
-  ],
-
-  /** The four-beat summary shown in the homepage module. */
-  arc: [
-    {
-      index: "01",
-      label: "Problem",
-      body: "A timetable, a homework list and a photo of a slide — none of which know about each other.",
-    },
-    {
-      index: "02",
-      label: "Idea",
-      body: "Start from what a week already commits you to, and make putting something in nearly free.",
-    },
-    {
-      index: "03",
-      label: "System",
-      body: "Structure, capture, workload, planning and learning signals over a Postgres schema.",
-    },
-    {
-      index: "04",
-      label: "Next",
-      body: "Failure behaviour, tests around scheduling, and better use of the signals already collected.",
     },
   ],
 
@@ -62,7 +32,6 @@ export const caseStudy = {
     { id: "system", index: "03", title: "System", short: "System" },
     { id: "current-state", index: "04", title: "Current state", short: "State" },
     { id: "next", index: "05", title: "What I'm building next", short: "Next" },
-    { id: "stack", index: "06", title: "Stack", short: "Stack" },
   ],
 
   problem: [
@@ -128,26 +97,6 @@ export const caseStudy = {
     { key: "learning_signals", value: "Accepted, moved or ignored — feedback for later suggestions" },
   ],
 
-  flows: [
-    {
-      steps: ["Screenshot", "Extract", "Review", "Commit"],
-      body: "A photo of a timetable or a slide of assessment dates becomes structured rows, mapped to the right class and date.",
-    },
-    {
-      steps: ["Text", "Parse", "Confirm", "Event"],
-      body: "A sentence becomes an event. The form still exists; it just isn't the fast path any more.",
-    },
-    {
-      steps: ["Timetable", "Sync", "Day structure"],
-      body: "The synced timetable is turned into the shape of a day — lessons, travel and the gaps between them — which everything else reads from.",
-    },
-  ],
-
-  scheduling:
-    "Free slots, workload, class difficulty, recent study time and stated intentions combine into a suggestion for a specific gap in a specific day. It suggests what to do with a free hour; it doesn't decide for you. What happens to that suggestion — accepted, moved, ignored — is recorded as a learning signal and weighed into the next one.",
-  infrastructure:
-    "Next.js on Vercel with Cloudflare in front, Supabase for Postgres and auth, and GitHub Actions for the jobs that need to run on a schedule rather than when someone opens a page. Reminders and push notifications are what turn a planner into something that reaches you.",
-
   currentState: [
     "It works, and it's early. A small group of students at my school use it alongside me, which is the most useful thing that has happened to it: a second timetable finds assumptions a single one never would. Otherwise I find bugs by using my own app, which is a method with a known limit.",
     "I've stopped treating it as a prototype I'll throw away. That changes what I worry about: which schema decisions would be expensive to change later, what the app shows when a sync fails or a model misreads a slide, and what data it holds and whether it needs to hold it.",
@@ -178,13 +127,5 @@ export const caseStudy = {
       tag: "Direction",
       body: "Less a calendar with smart features, more a study system: enough context that the app can answer what to do next, instead of leaving you to assemble the answer from four screens.",
     },
-  ],
-
-  stack: [
-    { key: "Application", value: "Next.js, React and TypeScript" },
-    { key: "Data", value: "Supabase and PostgreSQL, including auth and row-level policies" },
-    { key: "Running", value: "Vercel, with Cloudflare in front" },
-    { key: "AI", value: "Vercel AI SDK and LLM APIs for screenshot import and natural-language entry" },
-    { key: "Automation", value: "GitHub Actions for scheduled jobs" },
   ],
 } as const;

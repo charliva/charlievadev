@@ -19,19 +19,13 @@ export default function HomePage() {
       <Hero />
 
       <RailSection id="work" index="01" label="Work" heading="Selected work">
-        <RowList rows={WORK} />
-      </RailSection>
-
-      <RailSection
-        id="case-study"
-        index="02"
-        label="Case study"
-        heading="Syllabi case study"
-      >
         <CaseStudyModule />
+        <div className="mt-4">
+          <RowList rows={WORK} />
+        </div>
       </RailSection>
 
-      <RailSection id="about" index="03" label="About" heading="About">
+      <RailSection id="about" index="02" label="About" heading="About">
         <div className="space-y-4">
           {about.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 24)} className="type-body measure">
@@ -47,22 +41,21 @@ export default function HomePage() {
 
       </RailSection>
 
-      <RailSection id="stack" index="04" label="Stack" heading="Things I work with">
+      <RailSection id="stack" index="03" label="Stack" heading="Things I work with">
         <p className="type-body measure">{stack.intro}</p>
         <SpecTable items={stack.rows} className="mt-6" />
-        <p className="type-small mt-4 text-text-3">{stack.footnote}</p>
       </RailSection>
 
       <RailSection
         id="experiments"
-        index="05"
+        index="04"
         label="Experiments"
         heading="Experiments"
       >
         <RowList rows={EXPERIMENTS} />
       </RailSection>
 
-      <RailSection id="now" index="06" label="Now" heading="What I'm learning">
+      <RailSection id="now" index="05" label="Now" heading="What I'm learning">
         <p className="type-body measure">{now.intro}</p>
         <div className="mt-6 border-t border-rule">
           {now.rows.map((row, index) => (
@@ -84,7 +77,7 @@ export default function HomePage() {
 
       <RailSection
         id="contact"
-        index="07"
+        index="06"
         label="Contact"
         heading="Contact"
         separator={false}

@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 import { site } from "@/app/_content/site";
 
 const sha = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7);
@@ -8,7 +10,19 @@ export function SiteFooter() {
       <div className="mx-auto max-w-column border-t border-rule-strong pb-12 pt-6 lg:max-w-page">
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
           <p className="text-[13px] text-text-3">© 2026 {site.name}</p>
-          <p className="type-mono-data">next.js · vercel</p>
+          <a
+            href={site.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="type-mono-data group -my-3 inline-flex items-center gap-[6px] rounded-chip py-3 transition-colors duration-[120ms] ease-standard hover:text-text-2"
+          >
+            source
+            <ArrowUpRight
+              size={14}
+              strokeWidth={1.5}
+              className="shrink-0 transition-transform duration-[120ms] ease-standard group-hover:translate-x-[2px]"
+            />
+          </a>
         </div>
         {sha ? (
           <p className="type-mono-index mt-3 text-right">build {sha}</p>

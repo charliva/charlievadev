@@ -9,6 +9,7 @@ export const site = {
   email: "charlie@charlieva.dev",
   github: "charliva",
   githubUrl: "https://github.com/charliva",
+  sourceUrl: "https://github.com/charliva/charlievadev",
 } as const;
 
 export const meta = {
@@ -22,20 +23,6 @@ export const hero = {
   eyebrow: "Student developer · Aarhus, Denmark",
   headline: "I build software around problems I actually have.",
   lead: "I'm Charlie, 17, an IB Diploma student in Aarhus. Most of what I build is full-stack web — TypeScript, React, Next.js, Postgres. Right now that's Syllabi, a calendar and study hub for the IB, used by a small group of students at my school.",
-  spec: [
-    {
-      key: "Focus",
-      value:
-        "Syllabi — a calendar and study app built around the IB Diploma Programme",
-    },
-    { key: "School", value: "IB Diploma Programme, Aarhus Gymnasium Tilst" },
-    {
-      key: "Stack",
-      value: "typescript · next.js · supabase · postgres",
-      mono: true,
-    },
-    { key: "Direction", value: "Medicine and software engineering, deliberately both for now" },
-  ],
 } as const;
 
 export const about = {
@@ -43,7 +30,6 @@ export const about = {
     "I found CS50 when I was about seven. I understood a small fraction of it and kept going anyway. For years after that I was mostly learning — reading, following along, rebuilding things that already existed. At some point that stopped being interesting on its own.",
     "The change was an admin dashboard called Bitless: the first project I had to write entirely myself, with no tutorial to follow and no one else's structure to lean on. It's also where I learned that a schema shows through every screen you build on top of it.",
     "Since then the pattern has been the same. I notice a problem I actually have, look at what exists, and build something if nothing fits the way I work. Syllabi started that way. So did the homelab. Building is also how I learn, which means I'm usually inside a system before I understand every part of it — and then going back for the part I skipped. I'm deliberate about the going-back. Otherwise it's a pile of code that happens to run.",
-    "I'd rather ship a working version than write a long plan about one. The version after it is where the thinking shows up: the same system, rewritten until it's understandable instead of merely working.",
     "I'm at Aarhus Gymnasium Tilst, and my academic direction right now is medicine. Software isn't the fallback and medicine isn't the exit. Both come down to the same question — what is happening inside this system, and why — and I'd rather keep asking it in two places than pick an identity at seventeen.",
   ],
   aiNote: {
@@ -88,29 +74,11 @@ export const stack = {
       mono: true,
     },
   ],
-  footnote:
-    "The last row is the honest one: it's what I'm working through now, not a list of things I've finished.",
 } as const;
 
 export const now = {
   intro: "What I'm working on and reading about at the moment.",
   rows: [
-    {
-      title: "Reliability in Syllabi",
-      body: "Failure behaviour first: what the app shows when a sync fails or an import reads a date wrong, and which schema decisions would be expensive to change later.",
-    },
-    {
-      title: "CS fundamentals and system design",
-      body: "Algorithms, data structures, databases past getting the right rows back, and what happens when one piece of a system is slow, missing or wrong.",
-    },
-    {
-      title: "Testing and security",
-      body: "Tests around the scheduling logic, which is the most worth testing and the least tested. Auth edge cases, access rules, and storing less in the first place.",
-    },
-    {
-      title: "AI as ordinary architecture",
-      body: "Agents, human–AI interfaces, local models and routing. Software that holds enough context to be useful before you ask — the model treated like a database or a queue rather than a feature added at the end.",
-    },
     {
       title: "How software teaches",
       body: "Games hand you a complicated system and you understand it an hour later without reading anything. Most software does the opposite: a tour, a tooltip, and a screen you still can't use. I'd like to know what the difference is.",

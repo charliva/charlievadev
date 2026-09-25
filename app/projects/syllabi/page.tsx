@@ -38,23 +38,6 @@ function SectionHead({
   );
 }
 
-function Flow({ steps }: { steps: readonly string[] }) {
-  return (
-    <ol className="flex flex-wrap items-center gap-y-2">
-      {steps.map((step, index) => (
-        <li key={step} className="flex items-center">
-          {index > 0 ? (
-            <span aria-hidden="true" className="mx-2 h-px w-4 bg-rule sm:w-5" />
-          ) : null}
-          <span className="type-mono-data rounded-chip bg-raised px-2 py-1 text-text-2">
-            {step}
-          </span>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
 export default function CaseStudyPage() {
   return (
     <PageGrid>
@@ -177,22 +160,6 @@ export default function CaseStudyPage() {
           <div className="mt-5">
             <ArchitectureDiagram />
           </div>
-
-          <h3 className="type-h3 mt-10">Flows</h3>
-          <div className="mt-5 space-y-6">
-            {caseStudy.flows.map((flow) => (
-              <div key={flow.steps.join()}>
-                <Flow steps={flow.steps} />
-                <p className="type-small measure mt-3">{flow.body}</p>
-              </div>
-            ))}
-          </div>
-
-          <h3 className="type-h3 mt-10">Scheduling</h3>
-          <p className="type-body measure mt-2">{caseStudy.scheduling}</p>
-
-          <h3 className="type-h3 mt-10">Infrastructure</h3>
-          <p className="type-body measure mt-2">{caseStudy.infrastructure}</p>
         </Reveal>
 
         <SectionRule />
@@ -223,13 +190,6 @@ export default function CaseStudyPage() {
               </div>
             ))}
           </div>
-        </Reveal>
-
-        <SectionRule />
-
-        <Reveal as="section" id="stack" className="scroll-mt-20">
-          <SectionHead index="06" title="Stack" id="stack" />
-          <SpecTable items={caseStudy.stack} className="mt-5" />
         </Reveal>
 
         <Link

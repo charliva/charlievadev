@@ -2,7 +2,6 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { hero, site } from "@/app/_content/site";
-import { SpecTable } from "./spec-row";
 
 /**
  * First paint only, CSS keyframes rather than motion: the largest text on the
@@ -28,12 +27,9 @@ export function Hero() {
         <p className="type-lead hero-step measure-lead mt-5" style={step(2)}>
           {hero.lead}
         </p>
-        <div className="hero-step mt-8" style={step(3)}>
-          <SpecTable items={hero.spec} rowClassName="sm:min-h-10" />
-        </div>
         <div
-          className="hero-step mt-6 flex flex-wrap items-center gap-x-6 gap-y-3"
-          style={step(4)}
+          className="hero-step mt-8 flex flex-wrap items-center gap-x-6 gap-y-3"
+          style={step(3)}
         >
           <Link
             href="/projects/syllabi"

@@ -25,18 +25,6 @@ export function CaseStudyModule() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-px border-t border-rule bg-rule sm:grid-cols-2">
-        {caseStudy.arc.map((beat) => (
-          <div key={beat.label} className="bg-bg p-4">
-            <div className="flex items-baseline gap-2">
-              <span className="type-mono-index">{beat.index}</span>
-              <span className="type-mono-label">{beat.label}</span>
-            </div>
-            <p className="type-small mt-2">{beat.body}</p>
-          </div>
-        ))}
-      </div>
-
       <div className="border-t border-rule p-5 sm:p-6">
         <WeekSchematic />
       </div>
