@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import type { ProjectRow } from "@/app/_content/projects";
 import { cn } from "@/lib/utils";
 
-export function StatusDot() {
+function StatusDot() {
   return (
     <span
       aria-hidden="true"
@@ -14,7 +14,7 @@ export function StatusDot() {
   );
 }
 
-export function MonoTag({
+function MonoTag({
   children,
   live,
 }: {

@@ -9,10 +9,8 @@
 */
 :root {
   --bg: 0.985 0.001 286.4;
-  --bg-raised: 0.958 0.004 271.4;
   --rule: 0.816 0.012 259.8;
   --rule-strong: 0.74 0.015 264.5;
-  --line-interactive: 0.612 0.017 260.7;
   --text: 0.203 0.009 255.6;
   --text-2: 0.466 0.018 260.7;
   --text-3: 0.511 0.015 255.6;
@@ -24,19 +22,14 @@
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
-  --d-1: 120ms;
   --d-2: 180ms;
   --d-3: 260ms;
-  --d-4: 400ms;
 }
 
 .dark {
   --bg: 0.168 0.007 258.4;
-  --bg-raised: 0.208 0.009 255.6;
   --rule: 0.358 0.014 256.8;
   --rule-strong: 0.43 0.018 260.7;
-  --line-interactive: 0.533 0.019 259.4;
   --text: 0.951 0.005 258.3;
   --text-2: 0.752 0.016 260.7;
   --text-3: 0.658 0.016 260.7;
@@ -102,20 +95,8 @@
     text-wrap: balance;
   }
 
-  .type-h2 {
-    @apply font-sans text-[20px] font-medium leading-[1.35] tracking-[-0.02em] text-text;
-  }
-
-  .type-h3 {
-    @apply font-sans text-[16px] font-medium leading-[1.45] tracking-[-0.012em] text-text;
-  }
-
   .type-lead {
     @apply font-sans text-[18px] font-normal leading-[1.55] tracking-[-0.015em] text-text-2;
-  }
-
-  .type-body {
-    @apply font-sans text-[15px] font-normal leading-[1.66] tracking-[-0.005em] text-text-2;
   }
 
   .type-row-title {
@@ -124,10 +105,6 @@
 
   .type-small {
     @apply font-sans text-[13.5px] font-normal leading-[1.55] text-text-2;
-  }
-
-  .type-pull-quote {
-    @apply font-sans text-[22px] font-normal leading-[1.35] tracking-[-0.02em] text-text;
   }
 
   /* Mono says what the machine knows about it. */
@@ -146,28 +123,10 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .type-code {
-    @apply rounded-chip bg-raised px-[6px] py-[2px] font-mono text-[12.5px] text-text;
-  }
-
   /* Instrument Sans has a narrow `ch`: 66ch measured ~87 characters a line.
-     These land body text near 72 and the lead near 66. */
-  .measure {
-    max-width: 54ch;
-  }
-
+     This lands the lead near 66. */
   .measure-lead {
     max-width: 48ch;
-  }
-}
-
-@layer utilities {
-  .tint-hover {
-    background-color: var(--tint-hover);
-  }
-
-  .tint-active {
-    background-color: var(--tint-active);
   }
 }
 
@@ -196,12 +155,5 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-
-  /* Carve-out: hover tint and focus ring are feedback, not decoration. */
-  .tint-hover,
-  .tint-active,
-  :focus-visible {
-    transition-duration: 0.01ms !important;
   }
 }

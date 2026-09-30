@@ -1,7 +1,6 @@
 # charlieva.dev
 
-My personal site: a short introduction, a list of what I've built, and a case
-study on Syllabi.
+My personal site: a short introduction, what I've built, and how to reach me.
 
 ## Stack
 
@@ -22,13 +21,9 @@ component:
 
 | File | What it holds |
 |---|---|
-| `site.ts` | Name, contact details, hero, about, stack and "now" copy |
-| `links.ts` | Contact rows. Set `href` to a URL and the row goes live; `null` renders an unset slot |
-| `projects.ts` | Work and experiment rows |
-| `case-study.ts` | Everything on `/projects/syllabi` |
-
-Search for `TODO(charlie)` before publishing — those are claims that need
-confirming.
+| `site.ts` | Name, URLs, metadata and hero copy |
+| `links.ts` | Contact rows |
+| `projects.ts` | Work rows |
 
 ## Design notes
 
@@ -36,8 +31,7 @@ confirming.
   Nothing is ever wider than 816px.
 - Sans says what a thing is; mono says what the machine knows about it.
 - `--signal` (the one chromatic colour) is allowed only on focus rings, the
-  live status dot, the active nav/TOC marker, study blocks in the schematic,
-  the active diagram node, link underlines on hover, and the copy confirmation.
+  live status dot, the active nav marker, link underlines on hover, and the
+  copy confirmation.
   If two signal-coloured things are on screen at once, one of them is a bug.
-- No shadows, no gradients, no backdrop blur. Exactly one bordered module on
-  the homepage — the case study.
+- No shadows, no gradients, no backdrop blur.

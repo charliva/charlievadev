@@ -11,7 +11,6 @@ import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
   { id: "work", label: "work" },
-  { id: "about", label: "about" },
   { id: "contact", label: "contact" },
 ];
 
