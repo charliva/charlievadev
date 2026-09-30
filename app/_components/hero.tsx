@@ -1,7 +1,4 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import Link from "next/link";
-
-import { hero, site } from "@/app/_content/site";
+import { hero } from "@/app/_content/site";
 
 /**
  * First paint only, CSS keyframes rather than motion: the largest text on the
@@ -27,35 +24,6 @@ export function Hero() {
         <p className="type-lead hero-step measure-lead mt-5" style={step(2)}>
           {hero.lead}
         </p>
-        <div
-          className="hero-step mt-8 flex flex-wrap items-center gap-x-6 gap-y-3"
-          style={step(3)}
-        >
-          <Link
-            href="/projects/syllabi"
-            className="group -my-3 flex items-center gap-2 rounded-chip py-3 text-[13px] text-text transition-opacity duration-[120ms] active:opacity-80"
-          >
-            Read the Syllabi case study
-            <ArrowRight
-              size={14}
-              strokeWidth={1.5}
-              className="text-text-3 transition-all duration-[120ms] ease-standard group-hover:translate-x-[3px] group-hover:text-text-2"
-            />
-          </Link>
-          <a
-            href={site.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="group -my-3 flex items-center gap-2 rounded-chip py-3 text-[13px] text-text transition-opacity duration-[120ms] active:opacity-80"
-          >
-            GitHub
-            <ArrowUpRight
-              size={14}
-              strokeWidth={1.5}
-              className="text-text-3 transition-all duration-[120ms] ease-standard group-hover:translate-x-[3px] group-hover:text-text-2"
-            />
-          </a>
-        </div>
       </section>
       <hr className="col-span-full my-7 border-0 border-t border-rule sm:my-10" />
     </>

@@ -1,13 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { CONTACT, contactIntro } from "@/app/_content/links";
+import { CONTACT } from "@/app/_content/links";
 import { CopyEmail } from "./copy-email";
 
 export function ContactSection() {
   return (
     <>
-      <p className="type-body measure">{contactIntro}</p>
-      <dl className="mt-6 border-t border-rule">
+      <dl className="border-t border-rule">
         {CONTACT.map((link) => (
           <div
             key={link.key}
@@ -19,7 +18,7 @@ export function ContactSection() {
                 <span className="font-mono text-[13px]">
                   <CopyEmail email={link.value} />
                 </span>
-              ) : link.href ? (
+              ) : (
                 <a
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
@@ -37,12 +36,6 @@ export function ContactSection() {
                     />
                   ) : null}
                 </a>
-              ) : (
-                <span
-                  className="cursor-default font-mono text-[13px] text-text-3 underline decoration-rule-strong decoration-dotted decoration-1 underline-offset-[3px]"
-                >
-                  {link.value}
-                </span>
               )}
             </dd>
           </div>

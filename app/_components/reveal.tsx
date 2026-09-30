@@ -7,9 +7,6 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   id?: string;
-  as?: "div" | "section" | "li" | "article";
-  /** Stagger index — each step delays the reveal by 60ms. */
-  delayStep?: number;
 };
 
 /**
@@ -23,8 +20,6 @@ export function Reveal({
   children,
   className,
   id,
-  as = "div",
-  delayStep = 0,
 }: RevealProps) {
   const systemReduceMotion = useReducedMotion();
   // The server cannot know the media query, so the first client render has to
@@ -32,25 +27,21 @@ export function Reveal({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const reduceMotion = mounted && systemReduceMotion;
-  const MotionTag = motion[as];
 
   return (
-    <MotionTag
+    <motion.section
       id={id}
       data-reveal=""
       className={className}
       initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      /* No `amount`: the case study's System section is several viewports tall,
-         and a fraction-based threshold it can never meet leaves it invisible. */
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
       transition={{
         duration: reduceMotion ? 0.1 : 0.26,
-        delay: reduceMotion ? 0 : delayStep * 0.06,
         ease: [0.22, 1, 0.36, 1],
       }}
     >
       {children}
-    </MotionTag>
+    </motion.section>
   );
 }

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
 
 /**
@@ -23,20 +22,7 @@ export function PageGrid({ children }: { children: ReactNode }) {
   );
 }
 
-/** Content that spans rail + column (figures, wide tables). */
-export function FullWidth({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={cn("col-span-full min-w-0", className)}>{children}</div>
-  );
-}
-
-export function Separator() {
+function Separator() {
   return (
     <hr className="col-span-full my-7 border-0 border-t border-rule sm:my-10" />
   );
@@ -80,7 +66,7 @@ export function RailSection({
           <p className="type-mono-index mt-[6px]">{label}</p>
         </div>
       </div>
-      <Reveal as="section" id={id} className="min-w-0 scroll-mt-20 lg:col-start-2">
+      <Reveal id={id} className="min-w-0 scroll-mt-20 lg:col-start-2">
         <div aria-hidden="true" className="mb-4 flex items-center gap-2 lg:hidden">
           <span className="h-px w-3 bg-rule-strong" />
           <span className="type-mono-index">{index}</span>
